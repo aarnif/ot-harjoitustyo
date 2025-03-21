@@ -1,5 +1,6 @@
 import unittest
 from kassapaate import Kassapaate
+from maksukortti import Maksukortti
 
 class TestKassapaate(unittest.TestCase):
     def setUp(self):
@@ -37,4 +38,33 @@ class TestKassapaate(unittest.TestCase):
         self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
         self.assertEqual(self.kassapaate.edulliset, 0)
         self.assertEqual(vaihtoraha, maksu)
+
+    def test_korttiosto_toimii_edullisen_lounaan_osalta_jos_rahaa_riittavasti(self):
+        self.maksukortti = Maksukortti(1000)
+        tulos = self.kassapaate.syo_edullisesti_kortilla(self.maksukortti)
+        self.assertEqual(tulos, True)
+        self.assertEqual(self.kassapaate.edulliset, 1)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
+
+    def test_korttiosto_toimii_maukkaan_lounaan_osalta_jos_rahaa_riittavasti(self):
+        self.maksukortti = Maksukortti(1000)
+        tulos = self.kassapaate.syo_maukkaasti_kortilla(self.maksukortti)
+        self.assertEqual(tulos, True)
+        self.assertEqual(self.kassapaate.maukkaat, 1)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
+
+    def test_korttiosto_ei_toimi_edullisen_lounaan_osalta_jos_rahaa_ei_ole_riittavasti(self):
+        self.maksukortti = Maksukortti(200)
+        tulos = self.kassapaate.syo_edullisesti_kortilla(self.maksukortti)
+        self.assertEqual(tulos, False)
+        self.assertEqual(self.kassapaate.edulliset, 0)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
+
+    def test_korttiosto_ei_toimi_maukkaan_lounaan_osalta_jos_rahaa_ei_ole_riittavasti(self):
+        self.maksukortti = Maksukortti(300)
+        tulos = self.kassapaate.syo_maukkaasti_kortilla(self.maksukortti)
+        self.assertEqual(tulos, False)
+        self.assertEqual(self.kassapaate.maukkaat, 0)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
+    
     
