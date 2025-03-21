@@ -66,5 +66,17 @@ class TestKassapaate(unittest.TestCase):
         self.assertEqual(tulos, False)
         self.assertEqual(self.kassapaate.maukkaat, 0)
         self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
+
+    def test_kortille_ladattaessa_kortin_ja_kassan_saldo_muuttuu_ladatulla_summalla(self):
+        self.maksukortti = Maksukortti(1000)
+        self.kassapaate.lataa_rahaa_kortille(self.maksukortti, 500)
+        self.assertEqual(self.maksukortti.saldo, 1500)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100500)
+
+    def test_kortille_ei_voi_ladata_negatiivista_summaa(self):
+        self.maksukortti = Maksukortti(1000)
+        self.kassapaate.lataa_rahaa_kortille(self.maksukortti, -500)
+        self.assertEqual(self.maksukortti.saldo, 1000)
+        self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
     
     
