@@ -9,7 +9,7 @@ Sovelluksen avulla käyttäjä voi pitää kirjaa omista treeneistään ja asett
 Sovelluksessa on vain yhdenlaisia käyttäjiä, jotka ovat rekisteröityneitä käyttäjiä.
 Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
 
-## Perusversion tarjoama toiminnallisuus
+## Sovelluksen tarjoama toiminnallisuus
 
 ### Ennen kirjautumista
 
@@ -20,7 +20,7 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
   - Salasanan tulee olla pituudeltaan vähintään 6 merkkiä
 
 - Käyttäjä voi kirjautua järjestelmään
-  - Kirjautuminen tapahtuu syöttämällä käyttäjätunnus ja salasana lomaakkeelle
+  - Kirjautuminen tapahtuu syöttämällä käyttäjätunnus ja salasana lomakkeelle
     - Jos käyttäjätunnus tai salasana on väärin, käyttäjälle ilmoitetaan tästä
 
 ### Kirjautumisen jälkeen
