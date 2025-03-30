@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Haroitustyön aiheena on tällä hetkellä jonkinlainen <strong>treeni-sovellus</strong>, mihin käyttäjä voi asettaa <i>treenitavoitteita</i>, <i>kirjata treeninsä</i> ja <i>seurata edistymistään</i>.
+Harjoitustyön aiheena on tällä hetkellä jonkinlainen **treeni-sovellus**, mihin käyttäjä voi asettaa _treenitavoitteita_, _kirjata treeninsä_ ja _seurata edistymistään_.
 
 [Laskarit](/laskarit)
 
