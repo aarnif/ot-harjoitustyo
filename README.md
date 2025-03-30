@@ -6,5 +6,5 @@ Haroitustyön aiheena on tällä hetkellä jonkinlainen <strong>treeni-sovellus<
 
 ## Dokumentaatio
 
-- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
-- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+- [Vaatimusmäärittely](./python-workout-app/dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./python-workout-app/dokumentaatio/tuntikirjanpito.md)
