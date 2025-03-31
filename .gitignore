@@ -5,6 +5,8 @@ htmlcov
 .env
 .env.test
 .DS_Store
+.coverage
+htmlcov
 
 # data files
 python-workout-app/data/database.sqlite
