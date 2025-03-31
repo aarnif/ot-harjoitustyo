@@ -44,6 +44,13 @@ class UserRepository:
         self._connection.commit()
         
         return user
+    
+    def update_weekly_training_goal(self, username, new_weekly_training_goal):
+        cursor = self._connection.cursor()
+
+        cursor.execute("UPDATE users SET weekly_training_goal_in_minutes = ? WHERE username = ?", (new_weekly_training_goal, username))
+
+        self._connection.commit()
 
 
 user_repository = UserRepository(get_database_connection())

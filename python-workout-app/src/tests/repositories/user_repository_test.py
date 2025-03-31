@@ -34,4 +34,15 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(user.password, "password")
         self.assertEqual(user.weekly_training_goal_in_minutes, 0)
 
+    def test_update_workout_goal(self):
+        user_repository.create(self.user_maija)
+        users = user_repository.find_all()
+        self.assertEqual(len(users), 1)
+        self.assertEqual(users[0].username, "maija")
+        self.assertEqual(users[0].password, "password")
+        self.assertEqual(users[0].weekly_training_goal_in_minutes, 0)
+        user_repository.update_weekly_training_goal(self.user_maija.username, 400)
+        users = user_repository.find_all()
+        self.assertEqual(users[0].weekly_training_goal_in_minutes, 400)
+
     
