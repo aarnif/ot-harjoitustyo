@@ -22,6 +22,17 @@ class UserRepository:
 
         return users
     
+    def find_by_username(self, username):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT username, password, weekly_training_goal_in_minutes FROM users  WHERE username = ?", (username,))
+
+        row = cursor.fetchone()
+
+        user = User(row["username"], row["password"], row["weekly_training_goal_in_minutes"])
+
+        return user
+    
     def create(self, user):
         cursor = self._connection.cursor()
         
