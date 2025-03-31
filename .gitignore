@@ -3,7 +3,9 @@ __pycache__
 .coverage
 htmlcov
 .env
+.env.test
 .DS_Store
 
 # data files
 python-workout-app/data/database.sqlite
+python-workout-app/data/test-database.sqlite
