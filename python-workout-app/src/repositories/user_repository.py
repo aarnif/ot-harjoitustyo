@@ -1,6 +1,12 @@
 from entities.user import User
 from database_connection import get_database_connection
 
+def get_user_from_row(row):
+    if row:
+        return User(row["username"], row["password"], row["weekly_training_goal_in_minutes"])
+    
+    return None
+
 
 class UserRepository:
     def __init__(self, connection):
@@ -18,18 +24,18 @@ class UserRepository:
 
         rows = cursor.fetchall()
 
-        users = [User(row["username"], row["password"], row["weekly_training_goal_in_minutes"]) for row in rows]
+        users = [get_user_from_row(row) for row in rows]
 
         return users
     
     def find_by_username(self, username):
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT username, password, weekly_training_goal_in_minutes FROM users  WHERE username = ?", (username,))
+        cursor.execute("SELECT username, password, weekly_training_goal_in_minutes FROM users WHERE username = ?", (username,))
 
         row = cursor.fetchone()
 
-        user = User(row["username"], row["password"], row["weekly_training_goal_in_minutes"])
+        user = get_user_from_row(row)
 
         return user
     
