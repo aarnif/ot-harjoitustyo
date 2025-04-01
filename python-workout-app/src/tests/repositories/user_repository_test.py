@@ -23,6 +23,7 @@ class TestUserRepository(unittest.TestCase):
         user_repository.create(self.user_maija)
         user = user_repository.find_by_username(self.user_maija.username)
         self.check_user_equality(user, self.user_maija)
+        self.assertEqual(self.user_maija.weekly_training_goal_in_minutes, 0)
 
     def test_find_all_users(self):
         user_repository.create(self.user_matti)
