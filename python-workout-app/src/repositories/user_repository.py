@@ -22,6 +22,17 @@ class UserRepository:
 
         return users
     
+    def find_by_username(self, username):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT username, password, weekly_training_goal_in_minutes FROM users  WHERE username = ?", (username,))
+
+        row = cursor.fetchone()
+
+        user = User(row["username"], row["password"], row["weekly_training_goal_in_minutes"])
+
+        return user
+    
     def create(self, user):
         cursor = self._connection.cursor()
         
@@ -33,6 +44,13 @@ class UserRepository:
         self._connection.commit()
         
         return user
+    
+    def update_weekly_training_goal(self, username, new_weekly_training_goal):
+        cursor = self._connection.cursor()
+
+        cursor.execute("UPDATE users SET weekly_training_goal_in_minutes = ? WHERE username = ?", (new_weekly_training_goal, username))
+
+        self._connection.commit()
 
 
 user_repository = UserRepository(get_database_connection())
