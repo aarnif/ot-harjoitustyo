@@ -1,5 +1,5 @@
 ## Viikko 3
 
 - Projektin alustus, tietokannan lisäys ja testiympäristön luonti
-- User-repositorin luonti ja uuden käyttäjän lisäys metodi
-- User-repositorin testien kirjoittamisen aloitus
+- User-repositorin luonti, joka vastaa käyttäjiin liittyvistä tietokanta operaatioista
+- User-repositorin testien kirjoitus
