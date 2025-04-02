@@ -1,7 +1,5 @@
-from tkinter import Tk
-
-from login_view import LoginView
-from create_user_view import CreateUserView
+from ui.login_view import LoginView
+from ui.create_user_view import CreateUserView
 
 class UI:
     def __init__(self, root):
@@ -42,11 +40,3 @@ class UI:
         )
 
         self._current_view.pack()
-
-window = Tk()
-window.title("Workout App")
-
-ui = UI(window)
-ui.start()
-
-window.mainloop()
