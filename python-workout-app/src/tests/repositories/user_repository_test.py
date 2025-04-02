@@ -4,6 +4,7 @@ from tests.test_helpers import TestHelpers
 from repositories.user_repository import user_repository
 from entities.user import User
 
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         self.test_helpers = TestHelpers()
@@ -40,8 +41,7 @@ class TestUserRepository(unittest.TestCase):
         user_repository.create(self.user_maija)
         user = user_repository.find_by_username(self.user_maija.username)
         self.test_helpers.check_user_equality(user, self.user_maija)
-        user_repository.update_weekly_training_goal(self.user_maija.username, 400)
+        user_repository.update_weekly_training_goal(
+            self.user_maija.username, 400)
         user = user_repository.find_by_username(self.user_maija.username)
         self.assertEqual(user.weekly_training_goal_in_minutes, 400)
-
-    

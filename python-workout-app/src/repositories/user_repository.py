@@ -1,6 +1,7 @@
 from entities.user import User
 from database_connection import get_database_connection
 
+
 def get_user_from_row(row):
     if row:
         return User(row["username"], row["password"], row["weekly_training_goal_in_minutes"])
@@ -20,7 +21,8 @@ class UserRepository:
     def find_all(self):
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT username, password, weekly_training_goal_in_minutes FROM users")
+        cursor.execute(
+            "SELECT username, password, weekly_training_goal_in_minutes FROM users")
 
         rows = cursor.fetchall()
 
@@ -32,8 +34,8 @@ class UserRepository:
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT username, password, "
-            "weekly_training_goal_in_minutes FROM users WHERE username = ?",
-            (username,))
+                       "weekly_training_goal_in_minutes FROM users WHERE username = ?",
+                       (username,))
 
         row = cursor.fetchone()
 
@@ -58,7 +60,7 @@ class UserRepository:
         cursor = self._connection.cursor()
 
         cursor.execute("UPDATE users SET weekly_training_goal_in_minutes = ? WHERE username = ?",
-        (new_weekly_training_goal, username))
+                       (new_weekly_training_goal, username))
 
         self._connection.commit()
 
