@@ -13,11 +13,11 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
 
 ### Ennen kirjautumista
 
-- Käyttäjä voi luoda järjestelmään uuden käyttäjätunnuksen
+- [x] Käyttäjä voi luoda järjestelmään uuden käyttäjätunnuksen
 
-  - Käyttäjätunnuksen tulee olla uniikki
-  - Käyttäjätunnuksen tulee olla pituudeltaan vähintään 3 merkkiä
-  - Salasanan tulee olla pituudeltaan vähintään 6 merkkiä
+  - [x] Käyttäjätunnuksen tulee olla uniikki
+  - [x] Käyttäjätunnuksen tulee olla pituudeltaan vähintään 3 merkkiä
+  - [x] Salasanan tulee olla pituudeltaan vähintään 6 merkkiä
 
 - Käyttäjä voi kirjautua järjestelmään
   - Kirjautuminen tapahtuu syöttämällä käyttäjätunnus ja salasana lomakkeelle
