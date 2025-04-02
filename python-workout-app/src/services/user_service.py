@@ -1,5 +1,7 @@
 from entities.user import User
-from repositories.user_repository import user_repository
+from repositories.user_repository import (
+    user_repository as default_user_repository
+)
 
 # generoitu koodi alkaa
 class UserNameLengthError(Exception):
@@ -25,28 +27,28 @@ class UserNameExistsError(Exception):
 
 
 class UserService:
-    def __init__(self, user_repository):
+    def __init__(self, user_repository=default_user_repository):
         self.user_repository = user_repository
 
     def create_user(self, username, password, confirm_password):
 
         if len(username) < 3:
             raise UserNameLengthError()
-        
+
         if len(password) < 6:
             raise PasswordLengthError()
-        
+
         if password != confirm_password:
             raise PasswordMatchError()
-        
+
         check_if_user_already_exist = self.user_repository.find_by_username(username)
 
         if check_if_user_already_exist:
             raise UserNameExistsError()
-        
+
         user = self.user_repository.create(User(username, password))
 
         return user
 
 
-user_service = UserService(user_repository)
+user_service = UserService()
