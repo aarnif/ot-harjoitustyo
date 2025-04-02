@@ -12,6 +12,11 @@ class PasswordLengthError(Exception):
         self.message = message
         super().__init__(self.message)
 
+class PasswordMatchError(Exception):
+    def __init__(self, message="Passwords do not match."):
+        self.message = message
+        super().__init__(self.message)
+
 class UserNameExistsError(Exception):
     def __init__(self, message="User with the same username already exists."):
         self.message = message
@@ -23,13 +28,16 @@ class UserService:
     def __init__(self, user_repository):
         self.user_repository = user_repository
 
-    def create_user(self, username, password, weekly_training_goal_in_minutes):
+    def create_user(self, username, password, confirm_password, weekly_training_goal_in_minutes):
 
         if len(username) < 3:
             raise UserNameLengthError()
         
         if len(password) < 6:
             raise PasswordLengthError()
+        
+        if password != confirm_password:
+            raise PasswordMatchError()
         
         check_if_user_already_exist = self.user_repository.find_by_username(username)
 
