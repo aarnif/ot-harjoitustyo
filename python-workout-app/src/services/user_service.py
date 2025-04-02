@@ -28,7 +28,7 @@ class UserService:
     def __init__(self, user_repository):
         self.user_repository = user_repository
 
-    def create_user(self, username, password, confirm_password, weekly_training_goal_in_minutes):
+    def create_user(self, username, password, confirm_password):
 
         if len(username) < 3:
             raise UserNameLengthError()
@@ -44,7 +44,7 @@ class UserService:
         if check_if_user_already_exist:
             raise UserNameExistsError()
         
-        user = self.user_repository.create(User(username, password, weekly_training_goal_in_minutes))
+        user = self.user_repository.create(User(username, password))
 
         return user
 
