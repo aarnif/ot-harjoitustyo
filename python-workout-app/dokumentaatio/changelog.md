@@ -10,3 +10,4 @@
 - Salasanan varmennuksen lisäys User-serviceen
 - Uuden käyttäjän luonti käyttöliittymästä
 - Sovelluksen pakkauskaavion lisäys
+- Käyttäjän sisään- ja uloskirjautuminen käyttöliittymästä
