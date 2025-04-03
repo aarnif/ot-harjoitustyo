@@ -7,4 +7,5 @@
 | 31.3  | 3    | User-repositorin lisäys ja sen testaus   |
 |  1.4  | 2    | User-servicen aloitus ja sen testaus     |
 |  2.4  | 3    | uuden käyttäjän luonti käyttöliittymästä |
-|  yht  | 10   |                                          |
+|  3.4  | 1    | sovelluksen pakkauskaavion lisäys        |
+|  yht  | 11   |                                          |
