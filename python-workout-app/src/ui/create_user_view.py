@@ -4,8 +4,9 @@ from services.user_service import user_service, UserNameLengthError, PasswordLen
 
 
 class CreateUserView:
-    def __init__(self, root, handle_show_login):
+    def __init__(self, root, handle_show_main_view, handle_show_login):
         self._root = root
+        self._handle_show_main_view = handle_show_main_view
         self._handle_show_login = handle_show_login
         self._frame = None
         self._username_entry = None
@@ -30,6 +31,7 @@ class CreateUserView:
         try:
             user_service.create_user(
                 username_value, password_value, confirm_password_value)
+            self._handle_show_main_view()
         except UserNameLengthError as error:
             self._show_error_message(error.message)
         except PasswordLengthError as error:
