@@ -61,45 +61,47 @@ class TestUserService(unittest.TestCase):
 
     def test_login_user(self):
         new_user = user_service.create_user(self.user_matti.username,
-                                        self.user_matti.password,
-                                        self.user_matti.password)
+                                            self.user_matti.password,
+                                            self.user_matti.password)
         logged_in_user = user_service.login_user(new_user.username,
-                                        new_user.password)
+                                                 new_user.password)
         self.test_helpers.check_user_equality(logged_in_user, self.user_matti)
 
     def test_login_fails_with_wrong_username(self):
         new_user = user_service.create_user(self.user_matti.username,
-                                        self.user_matti.password,
-                                        self.user_matti.password)
+                                            self.user_matti.password,
+                                            self.user_matti.password)
         wrong_username = new_user.username[:-1]
         with pytest.raises(InvalidCredentialsError) as error:
             user_service.login_user(wrong_username, new_user.password)
-        self.assertEqual(str(error.value), self.invalid_credentials_error.message)
+        self.assertEqual(str(error.value),
+                         self.invalid_credentials_error.message)
 
     def test_login_fails_with_wrong_password(self):
         new_user = user_service.create_user(self.user_matti.username,
-                                        self.user_matti.password,
-                                        self.user_matti.password)
+                                            self.user_matti.password,
+                                            self.user_matti.password)
         wrong_password = new_user.password[:-1]
         with pytest.raises(InvalidCredentialsError) as error:
             user_service.login_user(new_user.username, wrong_password)
-        self.assertEqual(str(error.value), self.invalid_credentials_error.message)
+        self.assertEqual(str(error.value),
+                         self.invalid_credentials_error.message)
 
     def test_user_stays_logged_in(self):
         user_service.create_user(self.user_matti.username,
-                                self.user_matti.password,
+                                 self.user_matti.password,
+                                 self.user_matti.password)
+        user_service.login_user(self.user_matti.username,
                                 self.user_matti.password)
-        user_service.login_user(self.user_matti.username, self.user_matti.password)
         current_user = user_service.current_user()
         self.test_helpers.check_user_equality(current_user, self.user_matti)
 
     def logout_works(self):
         user_service.create_user(self.user_matti.username,
-                                self.user_matti.password,
+                                 self.user_matti.password,
+                                 self.user_matti.password)
+        user_service.login_user(self.user_matti.username,
                                 self.user_matti.password)
-        user_service.login_user(self.user_matti.username, self.user_matti.password)
         user_service.logout_user()
         current_user = user_service.current_user()
         self.test_helpers.check_user_equality(current_user, None)
-
-        

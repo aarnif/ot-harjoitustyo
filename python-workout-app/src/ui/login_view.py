@@ -2,6 +2,7 @@ from tkinter import ttk, constants, StringVar
 
 from services.user_service import user_service, InvalidCredentialsError
 
+
 class LoginView:
     def __init__(self, root, handle_show_main_view, handle_show_create_user):
         self._root = root
@@ -41,7 +42,7 @@ class LoginView:
 
         header_label = ttk.Label(
             master=self._frame, text="Login", font=("", 12, "bold"))
-        
+
         self._error_message = StringVar(self._frame)
 
         self._error_label = ttk.Label(
@@ -59,16 +60,17 @@ class LoginView:
         self._username_entry = username_entry
         self._password_entry = password_entry
 
-        login_button = ttk.Button(master=self._frame, text="Login", command=self._handle_login_user)
+        login_button = ttk.Button(
+            master=self._frame, text="Login", command=self._handle_login_user)
         create_user_button = ttk.Button(
             master=self._frame, text="Create User", command=self._handle_show_create_user)
 
         header_label.grid(columnspan=2, sticky=constants.W,
                           padx=(10, 0), pady=5)
-        
+
         self._error_label.grid(
             row=0, column=1, sticky=constants.W, padx=(10, 0), pady=5)
-        
+
         username_label.grid(row=1, column=0, padx=(10, 0), pady=5)
         username_entry.grid(row=1, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
