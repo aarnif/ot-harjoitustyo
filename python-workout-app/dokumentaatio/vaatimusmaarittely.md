@@ -19,9 +19,9 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
   - [x] Käyttäjätunnuksen tulee olla pituudeltaan vähintään 3 merkkiä
   - [x] Salasanan tulee olla pituudeltaan vähintään 6 merkkiä
 
-- Käyttäjä voi kirjautua järjestelmään
-  - Kirjautuminen tapahtuu syöttämällä käyttäjätunnus ja salasana lomakkeelle
-    - Jos käyttäjätunnus tai salasana on väärin, käyttäjälle ilmoitetaan tästä
+- [x] Käyttäjä voi kirjautua järjestelmään
+  - [x] Kirjautuminen tapahtuu syöttämällä käyttäjätunnus ja salasana lomakkeelle
+    - [x] Jos käyttäjätunnus tai salasana on väärin, käyttäjälle ilmoitetaan tästä
 
 ### Kirjautumisen jälkeen
 
@@ -32,4 +32,4 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
   - Treenille määritetään ainakin tyyppi (esim. lihaskunto tai aerobinen) ja kesto.
 - Käyttäjä voi tarkastella treenihistoriaansa
   - Treenihistoriasta näkee treenin tyypin, keston ja päivämäärän
-- Käyttäjä voi kirjautua ulos järjestelmästä
+- [x] Käyttäjä voi kirjautua ulos järjestelmästä
