@@ -4,7 +4,7 @@ import pytest
 from tests.test_helpers import TestHelpers
 from repositories.user_repository import user_repository
 from entities.user import User
-from services.user_service import user_service, UserNameLengthError, PasswordLengthError, PasswordMatchError, UserNameExistsError
+from services.user_service import user_service, UserNameLengthError, PasswordLengthError, PasswordMatchError, UserNameExistsError, InvalidCredentialsError
 
 
 class TestUserService(unittest.TestCase):
@@ -16,6 +16,7 @@ class TestUserService(unittest.TestCase):
         self.password_too_short = PasswordLengthError()
         self.password_do_not_match = PasswordMatchError()
         self.user_exists_error = UserNameExistsError()
+        self.invalid_credentials_error = InvalidCredentialsError()
 
     def test_create_user(self):
         user = user_service.create_user(self.user_matti.username,
@@ -57,3 +58,48 @@ class TestUserService(unittest.TestCase):
                                      self.user_matti.password,
                                      self.user_matti.password)
         self.assertEqual(str(error.value), self.user_exists_error.message)
+
+    def test_login_user(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                        self.user_matti.password,
+                                        self.user_matti.password)
+        logged_in_user = user_service.login_user(new_user.username,
+                                        new_user.password)
+        self.test_helpers.check_user_equality(logged_in_user, self.user_matti)
+
+    def test_login_fails_with_wrong_username(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                        self.user_matti.password,
+                                        self.user_matti.password)
+        wrong_username = new_user.username[:-1]
+        with pytest.raises(InvalidCredentialsError) as error:
+            user_service.login_user(wrong_username, new_user.password)
+        self.assertEqual(str(error.value), self.invalid_credentials_error.message)
+
+    def test_login_fails_with_wrong_password(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                        self.user_matti.password,
+                                        self.user_matti.password)
+        wrong_password = new_user.password[:-1]
+        with pytest.raises(InvalidCredentialsError) as error:
+            user_service.login_user(new_user.username, wrong_password)
+        self.assertEqual(str(error.value), self.invalid_credentials_error.message)
+
+    def test_user_stays_logged_in(self):
+        user_service.create_user(self.user_matti.username,
+                                self.user_matti.password,
+                                self.user_matti.password)
+        user_service.login_user(self.user_matti.username, self.user_matti.password)
+        current_user = user_service.current_user()
+        self.test_helpers.check_user_equality(current_user, self.user_matti)
+
+    def logout_works(self):
+        user_service.create_user(self.user_matti.username,
+                                self.user_matti.password,
+                                self.user_matti.password)
+        user_service.login_user(self.user_matti.username, self.user_matti.password)
+        user_service.logout_user()
+        current_user = user_service.current_user()
+        self.test_helpers.check_user_equality(current_user, None)
+
+        
