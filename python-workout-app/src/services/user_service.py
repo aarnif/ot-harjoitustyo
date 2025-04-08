@@ -61,6 +61,8 @@ class UserService:
 
         user = self.user_repository.create(User(username, password))
 
+        self._current_user = user
+
         return user
 
     def login_user(self, username, password):
