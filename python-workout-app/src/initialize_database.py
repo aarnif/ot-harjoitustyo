@@ -5,6 +5,10 @@ def drop_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute('''
+        DROP TABLE IF EXISTS workouts;
+    ''')
+
+    cursor.execute('''
         DROP TABLE IF EXISTS users;
     ''')
 
@@ -16,9 +20,21 @@ def create_tables(connection):
 
     cursor.execute('''
         CREATE TABLE users (
-            username TEXT UNIQUE PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE,
             password TEXT,
             weekly_training_goal_in_minutes INTEGER
+        );
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE workouts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            type TEXT,
+            duration INTEGER,
+            created_at INTEGER,
+            FOREIGN KEY (user_id) REFERENCES users (id)
         );
     ''')
 
