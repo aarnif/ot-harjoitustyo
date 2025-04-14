@@ -64,6 +64,9 @@ class UserRepository:
 
         self._connection.commit()
 
+        updated_user = self.find_by_username(username)
+
+        return updated_user
 
 user_repository = UserRepository(get_database_connection())
 

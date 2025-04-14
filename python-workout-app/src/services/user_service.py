@@ -64,6 +64,10 @@ class UserService:
         self._current_user = user
 
         return user
+    
+    def update_workout_goal(self, new_goal):
+        updated_user = self.user_repository.update_weekly_training_goal(self._current_user.username, new_goal)
+        self._current_user = updated_user
 
     def login_user(self, username, password):
         existing_user = self.user_repository.find_by_username(

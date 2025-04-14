@@ -96,7 +96,7 @@ class TestUserService(unittest.TestCase):
         current_user = user_service.current_user()
         self.test_helpers.check_user_equality(current_user, self.user_matti)
 
-    def logout_works(self):
+    def test_logout_works(self):
         user_service.create_user(self.user_matti.username,
                                  self.user_matti.password,
                                  self.user_matti.password)
@@ -104,4 +104,18 @@ class TestUserService(unittest.TestCase):
                                 self.user_matti.password)
         user_service.logout_user()
         current_user = user_service.current_user()
-        self.test_helpers.check_user_equality(current_user, None)
+        self.assertEqual(current_user, None)
+
+    def test_update_workout_goal(self):
+        user_service.create_user(self.user_matti.username,
+                                 self.user_matti.password,
+                                 self.user_matti.password)
+        user_service.login_user(self.user_matti.username,
+                                self.user_matti.password)
+        
+        new_workout_goal = 360
+        
+        user_service.update_workout_goal(new_workout_goal)
+        current_user = user_service.current_user()
+        self.assertEqual(current_user.weekly_training_goal_in_minutes, new_workout_goal)
+
