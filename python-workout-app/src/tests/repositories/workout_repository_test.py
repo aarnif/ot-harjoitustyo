@@ -35,4 +35,10 @@ class TestUserRepository(unittest.TestCase):
         workout = workout_repository.find_one_by_username(self.user_matti.username)
         self.test_helpers.check_workout_equality(workout, self.workout)
 
-    
+    def test_get_weeks_workout_total(self):
+        total = workout_repository.get_current_weeks_workout_total(self.user_matti.username)
+        self.assertEqual(total, 0)
+        workout_repository.create(self.workout)
+        workout_repository.create(self.workout)
+        total = workout_repository.get_current_weeks_workout_total(self.user_matti.username)
+        self.assertEqual(total, 120)
