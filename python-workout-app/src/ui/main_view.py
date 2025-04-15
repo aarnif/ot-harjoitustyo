@@ -36,6 +36,9 @@ class MainView:
 
     # generoitu koodi alkaa
     def _calculate_progress_color_and_message(self):
+        if self._workout_goal == 0:
+            return "orange", "Set a weekly workout goal to track your progress!"
+            
         percentage = (self._total_training_time / self._workout_goal) * 100
         percentage = min(100.0, percentage)
 
