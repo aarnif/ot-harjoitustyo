@@ -4,8 +4,6 @@ from repositories.user_repository import (
 )
 
 # generoitu koodi alkaa
-
-
 class UserNameLengthError(Exception):
     def __init__(self, message="Username must be at least 3 characters long."):
         self.message = message
@@ -32,6 +30,12 @@ class UserNameExistsError(Exception):
 
 class InvalidCredentialsError(Exception):
     def __init__(self, message="Invalid username or password. Please try again."):
+        self.message = message
+        super().__init__(self.message)
+
+
+class WorkoutGoalError(Exception):
+    def __init__(self, message="Workout goal must be number between 0 and 10080."):
         self.message = message
         super().__init__(self.message)
 # generoitu koodi päättyy
@@ -66,7 +70,20 @@ class UserService:
         return user
     
     def update_workout_goal(self, new_goal):
-        updated_user = self.user_repository.update_weekly_training_goal(self._current_user.username, new_goal)
+        # generoitu koodi alkaa
+        if not new_goal.isdigit():
+            raise WorkoutGoalError("Please enter a valid number for workout goal.")
+            
+        goal_value = int(new_goal)
+        
+        if goal_value < 0:
+            raise WorkoutGoalError()
+        if goal_value > 10080: # Maximum minutes in a week (7*24*60), pretty hardcode goal
+            raise WorkoutGoalError()
+        # generoitu koodi päättyy
+            
+        updated_user = self.user_repository.update_weekly_training_goal(
+            self._current_user.username, goal_value)
         self._current_user = updated_user
 
     def login_user(self, username, password):
