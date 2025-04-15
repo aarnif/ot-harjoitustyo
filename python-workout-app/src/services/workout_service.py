@@ -16,12 +16,14 @@ class WorkoutService:
 
     def create_workout(self, username, type, duration):
         created_at = datetime.now()
-        workout = self.workout_repository.create(Workout(username, type, duration, created_at))
+        workout = self.workout_repository.create(
+            Workout(username, type, duration, created_at))
 
         return workout
-    
+
     def get_weeks_workout_total(self, username):
-        workout_total = self.workout_repository.get_current_weeks_workout_total(username)
+        workout_total = self.workout_repository.get_current_weeks_workout_total(
+            username)
         return workout_total
 
 

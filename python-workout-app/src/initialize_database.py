@@ -26,7 +26,6 @@ def create_tables(connection):
         );
     ''')
 
-
     cursor.execute('''
         CREATE TABLE workouts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

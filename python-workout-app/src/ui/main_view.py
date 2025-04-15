@@ -9,7 +9,8 @@ class MainView:
         self._root = root
         self._current_user = user_service.current_user()
         self._workout_goal = self._current_user.weekly_training_goal_in_minutes
-        self._total_training_time = workout_service.get_weeks_workout_total(self._current_user.username)
+        self._total_training_time = workout_service.get_weeks_workout_total(
+            self._current_user.username)
         self._handle_show_login = handle_show_login
         self._handle_show_update_workout_goal = handle_show_update_workout_goal
         self._frame = None
@@ -32,12 +33,12 @@ class MainView:
     def _show_error_message(self, message):
         self._error_message.set(message)
         self._error_label.grid()
-    
+
     # generoitu koodi alkaa
     def _calculate_progress_color_and_message(self):
         percentage = (self._total_training_time / self._workout_goal) * 100
         percentage = min(100.0, percentage)
-        
+
         if percentage < 25:
             color = "red"
             message = "Just getting started! Keep up the good work!"
@@ -53,7 +54,7 @@ class MainView:
         else:
             color = "green"
             message = "Goal achieved! Outstanding work this week!"
-            
+
         return color, message
     # generoitu koodi päättyy
 
@@ -71,35 +72,37 @@ class MainView:
 
         logout_button.grid(row=0, column=3, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
-        
+
         # generoitu koodi alkaa
         progress_title = ttk.Label(
             master=self._frame,
             text="Weekly Training Progress",
             font=('', 12, 'bold'))
-        
-        progress_title.grid(row=1, column=0, columnspan=4, sticky=constants.W, 
-                           padx=10, pady=(10, 5))
-        
+
+        progress_title.grid(row=1, column=0, columnspan=4, sticky=constants.W,
+                            padx=10, pady=(10, 5))
+
         progress_label = ttk.Label(
-            master=self._frame, 
-            text=f"Current Progress: {self._total_training_time} minutes", 
+            master=self._frame,
+            text=f"Current Progress: {self._total_training_time} minutes",
             font=("", 10))
-        
-        progress_label.grid(row=2, column=0, sticky=constants.W, padx=10, pady=5)
+
+        progress_label.grid(
+            row=2, column=0, sticky=constants.W, padx=10, pady=5)
 
         goal_label = ttk.Label(
-            master=self._frame, 
-            text=f"Weekly Goal: {self._workout_goal} minutes", 
+            master=self._frame,
+            text=f"Weekly Goal: {self._workout_goal} minutes",
             font=("", 10))
-        
+
         goal_label.grid(row=3, column=0, sticky=constants.W, padx=10, pady=5)
 
         update_button = ttk.Button(
             master=self._frame, text="Update", command=self._handle_update_goal)
-        
-        update_button.grid(row=3, column=3, sticky=constants.E, padx=10, pady=5)
-        
+
+        update_button.grid(
+            row=3, column=3, sticky=constants.E, padx=10, pady=5)
+
         color, message = self._calculate_progress_color_and_message()
 
         percentage_label = ttk.Label(
@@ -108,7 +111,8 @@ class MainView:
             font=("", 10),
             foreground=color)
 
-        percentage_label.grid(row=4, column=0, sticky=constants.W, padx=10, pady=5)
+        percentage_label.grid(
+            row=4, column=0, sticky=constants.W, padx=10, pady=5)
         # generoitu koodi päättyy
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=100)

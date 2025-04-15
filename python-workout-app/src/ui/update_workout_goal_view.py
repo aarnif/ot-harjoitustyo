@@ -52,9 +52,10 @@ class UpdateWorkoutGoalView:
             foreground="red"
         )
 
-        new_workout_goal_label = ttk.Label(master=self._frame, text="New Workout Goal")
+        new_workout_goal_label = ttk.Label(
+            master=self._frame, text="New Workout Goal")
         new_workout_goal_entry = ttk.Entry(master=self._frame)
-        
+
         new_workout_goal_entry.insert(0, str(self._workout_goal))
 
         self._workout_goal_entry = new_workout_goal_entry

@@ -112,10 +112,10 @@ class TestUserService(unittest.TestCase):
                                  self.user_matti.password)
         user_service.login_user(self.user_matti.username,
                                 self.user_matti.password)
-        
+
         new_workout_goal = 360
-        
+
         user_service.update_workout_goal(new_workout_goal)
         current_user = user_service.current_user()
-        self.assertEqual(current_user.weekly_training_goal_in_minutes, new_workout_goal)
-
+        self.assertEqual(
+            current_user.weekly_training_goal_in_minutes, new_workout_goal)

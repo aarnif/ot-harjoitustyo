@@ -68,6 +68,7 @@ class UserRepository:
 
         return updated_user
 
+
 user_repository = UserRepository(get_database_connection())
 
 if __name__ == "__main__":

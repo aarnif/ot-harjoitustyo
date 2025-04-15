@@ -27,8 +27,8 @@ class TestWorkoutService(unittest.TestCase):
         workouts = workout_service.get_all_user_workouts(user.username)
         self.assertEqual(workouts, [])
         workout_service.create_workout(self.user_matti.username,
-                                        self.workout.type,
-                                        self.workout.duration)
+                                       self.workout.type,
+                                       self.workout.duration)
         workouts = workout_service.get_all_user_workouts(user.username)
         self.assertEqual(len(workouts), 1)
 
@@ -37,22 +37,24 @@ class TestWorkoutService(unittest.TestCase):
                                         self.user_matti.password,
                                         self.user_matti.password)
         workout = workout_service.create_workout(self.user_matti.username,
-                                        self.workout.type,
-                                        self.workout.duration)
+                                                 self.workout.type,
+                                                 self.workout.duration)
         self.test_helpers.check_workout_equality(workout, self.workout)
         self.assertEqual(workout.username, user.username)
 
     def test_get_weeks_workout_total(self):
         user_service.create_user(self.user_matti.username,
-                                        self.user_matti.password,
-                                        self.user_matti.password)
-        
+                                 self.user_matti.password,
+                                 self.user_matti.password)
+
         number_of_added_workouts = 3
-        
+
         for _ in range(number_of_added_workouts):
             workout_service.create_workout(self.user_matti.username,
-                                        self.workout.type,
-                                        self.workout.duration)
-            
-        workout_total = workout_service.get_weeks_workout_total(self.user_matti.username)
-        self.assertEqual(workout_total, self.workout.duration * number_of_added_workouts)
+                                           self.workout.type,
+                                           self.workout.duration)
+
+        workout_total = workout_service.get_weeks_workout_total(
+            self.user_matti.username)
+        self.assertEqual(workout_total, self.workout.duration *
+                         number_of_added_workouts)
