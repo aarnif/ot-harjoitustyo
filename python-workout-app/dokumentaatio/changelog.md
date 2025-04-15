@@ -11,3 +11,10 @@
 - Uuden käyttäjän luonti käyttöliittymästä
 - Sovelluksen pakkauskaavion lisäys
 - Käyttäjän sisään- ja uloskirjautuminen käyttöliittymästä
+
+## Viikko 5
+
+- workouts-taulukon lisäys tietokantaan
+- Workout-repositorin luonti, joka vastaa treneihin liittyvistä tietokanta operaatioista ja sen testien kirjoitus
+- Workout-servicen, joka sisältää treeneihin liittyvän sovelluslogiikan ja sen testien lisäys
+- Käyttäjän nykyisen treenitavoitteen näyttö ja sen päivittäminen käyttöliittymästä
