@@ -5,12 +5,13 @@ from services.workout_service import workout_service
 
 
 class MainView:
-    def __init__(self, root, handle_show_login):
+    def __init__(self, root, handle_show_login, handle_show_update_workout_goal):
         self._root = root
         self._current_user = user_service.current_user()
         self._workout_goal = self._current_user.weekly_training_goal_in_minutes
         self._total_training_time = workout_service.get_weeks_workout_total(self._current_user.username)
         self._handle_show_login = handle_show_login
+        self._handle_show_update_workout_goal = handle_show_update_workout_goal
         self._frame = None
 
         self._initialize()
@@ -24,6 +25,9 @@ class MainView:
     def _handle_logout_user(self):
         user_service.logout_user()
         self._handle_show_login()
+
+    def _handle_update_goal(self):
+        self._handle_show_update_workout_goal()
 
     def _show_error_message(self, message):
         self._error_message.set(message)
@@ -90,6 +94,11 @@ class MainView:
             font=("", 10))
         
         goal_label.grid(row=3, column=0, sticky=constants.W, padx=10, pady=5)
+
+        update_button = ttk.Button(
+            master=self._frame, text="Update", command=self._handle_update_goal)
+        
+        update_button.grid(row=3, column=3, sticky=constants.E, padx=10, pady=5)
         
         color, message = self._calculate_progress_color_and_message()
 
