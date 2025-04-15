@@ -17,15 +17,19 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 
 ## Asennus
 
-1.  Asenna sovelluksen vaatimat riippuvuudet:
+1.  Siirry harjoitustyön-hakemistoon:
+
+        cd python-workout-app
+
+2.  Asenna sovelluksen vaatimat riippuvuudet:
 
         poetry install
 
-2.  Alusta sovelluksen käyttämä tietokanta:
+3.  Alusta sovelluksen käyttämä tietokanta:
 
         poetry run invoke build
 
-3.  Käynnistä sovellus:
+4.  Käynnistä sovellus:
 
         poetry run invoke start
 
@@ -37,7 +41,7 @@ Sovelluksen testaus
 
 Testiraportin luonti
 
-    poetry run invoke test-coverage
+    poetry run invoke coverage-report
 
 Sovelluksen koodin tarkistus
 
