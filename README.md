@@ -8,6 +8,10 @@ Harjoitustyön aiheena on **treeni-sovellus**, mihin käyttäjä voi asettaa _tr
 
 Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sitä vanhemmilla versioilla.
 
+## Release-linkki
+
+[Viikko 5](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Dokumentaatio
 
 - [Vaatimusmäärittely](./python-workout-app/dokumentaatio/vaatimusmaarittely.md)
@@ -17,7 +21,7 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 
 ## Asennus
 
-1.  Siirry harjoitustyön-hakemistoon:
+1.  Siirry sovelluksen hakemistoon:
 
         cd python-workout-app
 
