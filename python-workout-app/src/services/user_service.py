@@ -86,9 +86,10 @@ class UserService:
             updated_user = self.user_repository.update_weekly_training_goal(
                 self._current_user.username, new_goal)
             self._current_user = updated_user
-            
+
         except ValueError:
-            raise WorkoutGoalError("Please enter a valid number for workout goal.")
+            raise WorkoutGoalError(
+                "Please enter a valid number for workout goal.")
         # generoitu koodi päättyy
 
     def login_user(self, username, password):
