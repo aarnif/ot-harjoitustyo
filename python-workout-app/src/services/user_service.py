@@ -73,22 +73,23 @@ class UserService:
 
     def update_workout_goal(self, new_goal):
         # generoitu koodi alkaa
-        if not new_goal.isdigit():
-            raise WorkoutGoalError(
-                "Please enter a valid number for workout goal.")
+        try:
+            if isinstance(new_goal, str):
+                new_goal = int(new_goal)
 
-        goal_value = int(new_goal)
+            if new_goal < 0:
+                raise WorkoutGoalError()
+            # Maximum minutes in a week (7*24*60), pretty hardcode goal
+            if new_goal > 10080:
+                raise WorkoutGoalError()
 
-        if goal_value < 0:
-            raise WorkoutGoalError()
-        # Maximum minutes in a week (7*24*60), pretty hardcode goal
-        if goal_value > 10080:
-            raise WorkoutGoalError()
+            updated_user = self.user_repository.update_weekly_training_goal(
+                self._current_user.username, new_goal)
+            self._current_user = updated_user
+            
+        except ValueError:
+            raise WorkoutGoalError("Please enter a valid number for workout goal.")
         # generoitu koodi päättyy
-
-        updated_user = self.user_repository.update_weekly_training_goal(
-            self._current_user.username, goal_value)
-        self._current_user = updated_user
 
     def login_user(self, username, password):
         existing_user = self.user_repository.find_by_username(
