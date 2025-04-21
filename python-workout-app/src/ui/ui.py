@@ -2,6 +2,7 @@ from ui.main_view import MainView
 from ui.login_view import LoginView
 from ui.update_workout_goal_view import UpdateWorkoutGoalView
 from ui.create_user_view import CreateUserView
+from ui.workouts_view import WorkoutsView
 
 
 class UI:
@@ -30,13 +31,17 @@ class UI:
     def _handle_update_workout_goal(self):
         self._show_update_workout_goal_view()
 
+    def _handle_show_workouts_view(self):
+        self._show_workouts_view()
+
     def _show_main_view(self):
         self._hide_current_view()
 
         self._current_view = MainView(
             self._root,
             self._handle_show_login_view,
-            self._show_update_workout_goal_view
+            self._show_update_workout_goal_view,
+            self._handle_show_workouts_view,
         )
 
         self._current_view.pack()
@@ -67,6 +72,16 @@ class UI:
         self._hide_current_view()
 
         self._current_view = UpdateWorkoutGoalView(
+            self._root,
+            self._handle_show_main_view,
+        )
+
+        self._current_view.pack()
+
+    def _show_workouts_view(self):
+        self._hide_current_view()
+
+        self._current_view = WorkoutsView(
             self._root,
             self._handle_show_main_view,
         )
