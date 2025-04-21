@@ -5,12 +5,13 @@ from services.workout_service import workout_service
 
 
 class WorkoutsView:
-    def __init__(self, root, handle_show_main_view):
+    def __init__(self, root, handle_show_main_view, handle_show_create_workout):
         self._root = root
         self._current_user = user_service.current_user()
         self._all_workouts = workout_service.get_all_user_workouts(
             self._current_user.username)
         self._handle_show_main_view = handle_show_main_view
+        self._handle_show_create_workout = handle_show_create_workout
         self._frame = None
 
         self._initialize()
@@ -21,6 +22,9 @@ class WorkoutsView:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_add_workout(self):
+        self._handle_show_create_workout()
+
     def _handle_go_back_to_main_view(self):
         self._handle_show_main_view()
 
@@ -29,6 +33,10 @@ class WorkoutsView:
 
         title_label = ttk.Label(
             master=self._frame, text="Workouts", font=("", 11, "bold"))
+        
+        add_workout_button = ttk.Button(
+            master=self._frame, text="Add Workout", command=self._handle_add_workout)
+        
         back_button = ttk.Button(
             master=self._frame, text="Go Back", command=self._handle_go_back_to_main_view)
 
@@ -36,6 +44,8 @@ class WorkoutsView:
                          padx=(10, 10), pady=5)
         back_button.grid(row=0, column=3, sticky=(constants.E, constants.W),
                          padx=(5, 10), pady=5)
+        add_workout_button.grid(row=0, column=2, sticky=(constants.E, constants.W),
+                                padx=(5, 10), pady=5)
 
         # generoitu koodi alkaa
         if not self._all_workouts:
