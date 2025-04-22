@@ -1,7 +1,7 @@
 from tkinter import ttk, constants, StringVar
 
 from services.user_service import user_service
-from services.workout_service import workout_service, WorkOutDurationLengthError
+from services.workout_service import workout_service, WorkOutDurationError
 
 
 class CreateWorkoutView:
@@ -30,7 +30,7 @@ class CreateWorkoutView:
             workout_service.create_workout(self._current_user.username,
                 workout_type, workout_duration)
             self._handle_show_workouts_view()
-        except WorkOutDurationLengthError as error:
+        except WorkOutDurationError as error:
             self._show_error_message(error.message)
 
     def _show_error_message(self, message):
