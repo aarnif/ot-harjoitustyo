@@ -5,7 +5,7 @@ from services.workout_service import workout_service
 
 
 class MainView:
-    def __init__(self, root, handle_show_login, handle_show_update_workout_goal):
+    def __init__(self, root, handle_show_login, handle_show_update_workout_goal, handle_show_workouts):
         self._root = root
         self._current_user = user_service.current_user()
         self._workout_goal = self._current_user.weekly_training_goal_in_minutes
@@ -13,6 +13,7 @@ class MainView:
             self._current_user.username)
         self._handle_show_login = handle_show_login
         self._handle_show_update_workout_goal = handle_show_update_workout_goal
+        self._handle_show_workouts = handle_show_workouts
         self._frame = None
 
         self._initialize()
@@ -23,16 +24,15 @@ class MainView:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_show_workouts_view(self):
+        self._handle_show_workouts()
+
     def _handle_logout_user(self):
         user_service.logout_user()
         self._handle_show_login()
 
     def _handle_update_goal(self):
         self._handle_show_update_workout_goal()
-
-    def _show_error_message(self, message):
-        self._error_message.set(message)
-        self._error_label.grid()
 
     # generoitu koodi alkaa
     def _calculate_progress_color_and_message(self):
@@ -66,12 +66,18 @@ class MainView:
 
         header_label = ttk.Label(
             master=self._frame, text=f"Hi, {self._current_user.username}!", font=("", 11, "bold"))
+        
+        workouts_button = ttk.Button(
+            master=self._frame, text="Workouts", command=self._handle_show_workouts_view)
 
         logout_button = ttk.Button(
             master=self._frame, text="Logout", command=self._handle_logout_user)
 
         header_label.grid(columnspan=2, sticky=constants.W,
                           padx=(10, 0), pady=5)
+        
+        workouts_button.grid(row=0, column=2, sticky=(
+            constants.E, constants.W), padx=(5, 10), pady=5)
 
         logout_button.grid(row=0, column=3, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
