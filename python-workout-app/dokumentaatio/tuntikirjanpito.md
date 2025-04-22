@@ -13,4 +13,6 @@
 | 12.4  | 2    | Workout-repositorin lisäys ja sen testaus                  |
 | 14.4  | 2    | Workout-servicen lisäys ja sen testaus                     |
 | 15.4  | 2    | Treenitavoitteen näyttö ja päivittäminen käyttöliittymästä |
-|  yht  | 21   |                                                            |
+| 21.4  | 2    | Treenihistorian lisäys käyttöliittymään                    |
+| 22.4  | 1    | Uuden treenin lisäys käyttöliittymään                      |
+|  yht  | 23   |                                                            |
