@@ -18,3 +18,8 @@
 - Workout-repositorin luonti, joka vastaa treneihin liittyvistä tietokanta operaatioista ja sen testien kirjoitus
 - Workout-servicen, joka sisältää treeneihin liittyvän sovelluslogiikan ja sen testien lisäys
 - Käyttäjän nykyisen treenitavoitteen näyttö ja sen päivittäminen käyttöliittymästä
+
+## Viikko 6
+
+- Workouts-näkymän lisäys käyttöliittymään
+- CreateWorkout-näkymän lisäys käyttöliittymään
