@@ -27,8 +27,9 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
 
 - [x] Käyttäjä näkee päänäkymän, jossa on listattuna käyttäjän viikottainen treenitavoite ja kuinka lähellä käyttäjä on tavoitettaan
 - [x] Käyttäjä voi asettaa uuden viikottaisen treenitavoitteen
-- Käyttäjä voi lisätä uuden treenin
-  - Treenille määritetään ainakin tyyppi (esim. lihaskunto tai aerobinen) ja kesto.
-- Käyttäjä voi tarkastella treenihistoriaansa
-  - Treenihistoriasta näkee treenin tyypin, keston ja päivämäärän
+- [x] Käyttäjä voi lisätä uuden treenin
+  - [x] Treenille määritetään ainakin tyyppi (esim. lihaskunto tai aerobinen) ja kesto.
+- [x] Käyttäjä voi tarkastella treenihistoriaansa
+  - [x] Treenihistoriasta näkee treenin tyypin, keston ja päivämäärän
+- Käyttäjä voi muokata tai poistaa lisättyjä treenejä
 - [x] Käyttäjä voi kirjautua ulos järjestelmästä
