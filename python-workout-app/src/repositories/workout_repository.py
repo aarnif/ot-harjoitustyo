@@ -33,12 +33,12 @@ class WorkoutRepository:
 
         return workouts
 
-    def find_one_by_username(self, username):
+    def find_one_by_id(self, id):
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "SELECT username, type, duration, created_at FROM workouts WHERE username = ?",
-            (username,))
+            "SELECT id, username, type, duration, created_at FROM workouts WHERE id = ?",
+            (id,))
 
         row = cursor.fetchone()
 
@@ -57,8 +57,12 @@ class WorkoutRepository:
 
         self._connection.commit()
 
-        return workout
+        # generoitu koodi alkaa
+        workout.id = cursor.lastrowid
+        # generoitu koodi päättyy
 
+        return workout
+    
     # generoitu koodi alkaa
     def get_current_weeks_workout_total(self, username):
         workouts = self.find_all_by_username(username)
