@@ -85,6 +85,59 @@ class TestWorkoutService(unittest.TestCase):
         self.test_helpers.check_workout_equality(workout, self.workout)
         self.assertEqual(workout.username, user.username)
 
+    def test_update_workout_duration_negative_number(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                            self.user_matti.password,
+                                            self.user_matti.password)
+        user_service.login_user(new_user.username,
+                                                 new_user.password)
+        
+        new_workout = workout_service.create_workout(self.user_matti.username,
+                                                 self.workout.type,
+                                                 self.workout.duration)
+        
+        new_workout.duration = -1
+
+        with pytest.raises(WorkOutDurationError) as error:
+            workout_service.update_workout(new_workout)
+        self.assertEqual(str(error.value),
+                         self.workout_duration_error.message)
+        
+    def test_update_workout_duration_too_big(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                            self.user_matti.password,
+                                            self.user_matti.password)
+        user_service.login_user(new_user.username,
+                                                 new_user.password)
+        
+        new_workout = workout_service.create_workout(self.user_matti.username,
+                                                 self.workout.type,
+                                                 self.workout.duration)
+        
+        new_workout.duration = 10081
+
+        with pytest.raises(WorkOutDurationError) as error:
+            workout_service.update_workout(new_workout)
+        self.assertEqual(str(error.value),
+                         self.workout_duration_error.message)
+
+    def test_update_workout(self):
+        user_service.create_user(self.user_matti.username,
+                                        self.user_matti.password,
+                                        self.user_matti.password)
+        new_workout = workout_service.create_workout(self.user_matti.username,
+                                                 self.workout.type,
+                                                 self.workout.duration)
+        new_workout.type = "strength"
+        new_workout.duration = 120
+        
+        workout_service.update_workout(new_workout)
+        workout_by_id = workout_service.get_workout_by_id(new_workout.id)
+
+        self.assertEqual(workout_by_id.type, "strength")
+        self.assertEqual(workout_by_id.duration, 120)
+
+
     def test_get_weeks_workout_total(self):
         user_service.create_user(self.user_matti.username,
                                  self.user_matti.password,

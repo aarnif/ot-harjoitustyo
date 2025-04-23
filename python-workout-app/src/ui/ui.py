@@ -4,12 +4,13 @@ from ui.update_workout_goal_view import UpdateWorkoutGoalView
 from ui.create_user_view import CreateUserView
 from ui.workouts_view import WorkoutsView
 from ui.create_workout_view import CreateWorkoutView
-
+from ui.update_workout_view import UpdateWorkoutView
 
 class UI:
     def __init__(self, root):
         self._root = root
         self._current_view = None
+        self._selected_workout_id = None
 
     def start(self):
         self._show_login_view()
@@ -37,6 +38,10 @@ class UI:
 
     def _handle_show_create_workout_view(self):
         self._show_create_workout_view()
+
+    def _handle_show_update_workout_view(self, workout_id):
+        self._selected_workout_id = workout_id
+        self._show_update_workout_view()
 
     def _show_main_view(self):
         self._hide_current_view()
@@ -89,6 +94,7 @@ class UI:
             self._root,
             self._handle_show_main_view,
             self._handle_show_create_workout_view,
+            self._handle_show_update_workout_view,
         )
 
         self._current_view.pack()
@@ -98,6 +104,17 @@ class UI:
 
         self._current_view = CreateWorkoutView(
             self._root,
+            self._handle_show_workouts_view,
+        )
+
+        self._current_view.pack()
+
+    def _show_update_workout_view(self):
+        self._hide_current_view()
+
+        self._current_view = UpdateWorkoutView(
+            self._root,
+            self._selected_workout_id,
             self._handle_show_workouts_view,
         )
 
