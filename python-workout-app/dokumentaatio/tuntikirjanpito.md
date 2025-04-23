@@ -15,4 +15,5 @@
 | 15.4  | 2    | Treenitavoitteen näyttö ja päivittäminen käyttöliittymästä |
 | 21.4  | 2    | Treenihistorian lisäys käyttöliittymään                    |
 | 22.4  | 1    | Uuden treenin lisäys käyttöliittymään                      |
-|  yht  | 23   |                                                            |
+| 23.4  | 3    | Uuden treenin muokkaus käyttöliittymästä                   |
+|  yht  | 26   |                                                            |
