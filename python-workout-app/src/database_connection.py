@@ -7,7 +7,7 @@ from config import DATABASE_FILENAME
 
 
 def adapt_datetime(dt: datetime) -> str:
-    return dt.isoformat(" ")
+    return dt.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def convert_datetime(s: bytes) -> datetime:
