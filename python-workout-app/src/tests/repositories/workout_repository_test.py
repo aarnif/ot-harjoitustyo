@@ -21,6 +21,13 @@ class TestUserRepository(unittest.TestCase):
         workout = workout_repository.create(self.workout)
         self.test_helpers.check_workout_equality(workout, self.workout)
 
+    def test_update_workout(self):
+        new_workout = workout_repository.create(self.workout)
+        self.assertEqual(new_workout.duration, self.workout.duration)
+        new_workout.duration = 120
+        updated_workout = workout_repository.update(new_workout)
+        self.assertEqual(updated_workout.duration, 120)
+
     def test_find_all_workouts_by_username(self):
         workouts = workout_repository.find_all_by_username(
             self.user_matti.username)

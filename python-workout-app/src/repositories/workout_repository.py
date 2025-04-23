@@ -64,6 +64,17 @@ class WorkoutRepository:
         return workout
     
     # generoitu koodi alkaa
+    def update(self, workout):
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "UPDATE workouts "
+            "SET type = ?, duration = ? "
+            "WHERE id = ? AND username = ?",
+            (workout.type, workout.duration, workout.id, workout.username)
+        )
+        self._connection.commit()
+        return workout
+    
     def get_current_weeks_workout_total(self, username):
         workouts = self.find_all_by_username(username)
 
