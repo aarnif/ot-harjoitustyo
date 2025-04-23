@@ -6,7 +6,7 @@ from database_connection import get_database_connection
 
 def get_workout_from_row(row):
     if row:
-        return Workout(row["username"], row["type"], row["duration"], row["created_at"])
+        return Workout(row["username"], row["type"], row["duration"], row["created_at"], row["id"])
 
     return None
 
@@ -24,7 +24,7 @@ class WorkoutRepository:
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "SELECT username, type, duration, created_at FROM workouts WHERE username = ?",
+            "SELECT id, username, type, duration, created_at FROM workouts WHERE username = ?",
             (username,))
 
         rows = cursor.fetchall()

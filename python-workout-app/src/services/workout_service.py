@@ -47,9 +47,9 @@ class WorkoutService:
             raise WorkOutDurationError("Please enter a valid number for workout duration.")
         
     def update_workout(self, workout):
-        duration = workout.duration
         try:
-            duration = self._validate_duration(duration)
+            validated_duration = self._validate_duration(workout.duration)
+            workout.duration = validated_duration
 
             updated_workout = self.workout_repository.update(workout)
             return updated_workout

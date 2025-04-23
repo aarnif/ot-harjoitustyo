@@ -5,13 +5,14 @@ from services.workout_service import workout_service
 
 
 class WorkoutsView:
-    def __init__(self, root, handle_show_main_view, handle_show_create_workout):
+    def __init__(self, root, handle_show_main_view, handle_show_create_workout, handle_show_update_workout):
         self._root = root
         self._current_user = user_service.current_user()
         self._all_workouts = workout_service.get_all_user_workouts(
             self._current_user.username)
         self._handle_show_main_view = handle_show_main_view
         self._handle_show_create_workout = handle_show_create_workout
+        self._handle_show_update_workout = handle_show_update_workout
         self._frame = None
 
         self._initialize()
@@ -24,6 +25,9 @@ class WorkoutsView:
 
     def _handle_add_workout(self):
         self._handle_show_create_workout()
+
+    def _handle_update_workout(self, workout_id):
+        self._handle_show_update_workout(workout_id)
 
     def _handle_go_back_to_main_view(self):
         self._handle_show_main_view()
@@ -70,9 +74,13 @@ class WorkoutsView:
                     self._frame, text=f"{workout.duration} minutes")
                 label_date = ttk.Label(master=self._frame, text=workout.created_at)
 
+                update_button = ttk.Button(
+                    master=self._frame, text="Update", command=lambda wid=workout.id: self._handle_update_workout(wid))
+
                 label_type.grid(row=idx, column=0, padx=10, pady=2, sticky=constants.E)
                 label_duration.grid(row=idx, column=1, padx=10, pady=2, sticky=constants.E)
                 label_date.grid(row=idx, column=2, padx=10, pady=2, sticky=constants.E)
+                update_button.grid(row=idx, column=3, padx=10, pady=2, sticky=(constants.E, constants.W))
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=100)
         self._frame.grid_columnconfigure(1, weight=1, minsize=100)
