@@ -32,5 +32,5 @@ Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
 - [x] Käyttäjä voi tarkastella käynnissä olevan viikon treenihistoriaa
   - [x] Treenihistoriasta näkee treenin tyypin, keston ja päivämäärän
 - [x] Käyttäjä voi muokata lisättyjä treenejä
-- Käyttäjä voi poistaa lisättyjä treenejä
+- [x] Käyttäjä voi poistaa lisättyjä treenejä
 - [x] Käyttäjä voi kirjautua ulos järjestelmästä
