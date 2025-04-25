@@ -75,6 +75,15 @@ class WorkoutRepository:
         self._connection.commit()
         return workout
     
+    def delete(self, workout_id):
+        cursor = self._connection.cursor()
+        cursor.execute(
+            "DELETE FROM workouts WHERE id = ?",
+            (workout_id,)
+        )
+        self._connection.commit()
+        return cursor.rowcount > 0
+    
     def get_current_weeks_workout_total(self, username):
         workouts = self.find_all_by_username(username)
 

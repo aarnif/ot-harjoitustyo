@@ -28,6 +28,12 @@ class TestUserRepository(unittest.TestCase):
         updated_workout = workout_repository.update(new_workout)
         self.assertEqual(updated_workout.duration, 120)
 
+    def test_delete_workout(self):
+        new_workout = workout_repository.create(self.workout)
+        self.test_helpers.check_workout_equality(new_workout, self.workout)
+        workout_is_deleted = workout_repository.delete(new_workout.id)
+        self.assertEqual(workout_is_deleted, True)
+
     def test_find_all_workouts_by_username(self):
         workouts = workout_repository.find_all_by_username(
             self.user_matti.username)
