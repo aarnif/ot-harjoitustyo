@@ -16,4 +16,5 @@
 | 21.4  | 2    | Treenihistorian lisäys käyttöliittymään                    |
 | 22.4  | 1    | Uuden treenin lisäys käyttöliittymään                      |
 | 23.4  | 3    | Uuden treenin muokkaus käyttöliittymästä                   |
-|  yht  | 26   |                                                            |
+| 25.4  | 2    | Uuden treenin poisto käyttöliittymästä                     |
+|  yht  | 29   |                                                            |
