@@ -49,6 +49,12 @@ class UpdateWorkoutView:
     def _handle_cancel(self):
         self._handle_show_workouts_view()
 
+    def _handle_delete_workout(self):
+        if workout_service.delete_workout(self._selected_workout.id):
+            self._handle_show_workouts_view()
+        else:
+            self._show_error_message("Failed to delete workout.")
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
@@ -82,8 +88,10 @@ class UpdateWorkoutView:
 
         self._workout_duration_entry = new_workout_duration_entry
 
-        create_button = ttk.Button(
+        update_button = ttk.Button(
             master=self._frame, text="Update", command=self._handle_update_workout)
+        delete_button = ttk.Button(
+            master=self._frame, text="Delete", command=self._handle_delete_workout)
         cancel_button = ttk.Button(
             master=self._frame, text="Cancel", command=self._handle_cancel)
 
@@ -101,9 +109,11 @@ class UpdateWorkoutView:
         new_workout_duration_entry.grid(row=2, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
 
-        create_button.grid(row=3, column=1, sticky=(
+        update_button.grid(row=3, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
-        cancel_button.grid(row=4, column=1, sticky=(
+        delete_button.grid(row=4, column=1, sticky=(
+            constants.E, constants.W), padx=(5, 10), pady=5)
+        cancel_button.grid(row=5, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=300)
