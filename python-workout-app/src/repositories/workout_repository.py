@@ -89,12 +89,12 @@ class WorkoutRepository:
 
         end_of_week = start_of_week + timedelta(days=6)
         end_of_week = datetime(
-            end_of_week.year, end_of_week.month, end_of_week.day, 23, 59, 59)
+            end_of_week.year, end_of_week.month, end_of_week.day, 23, 59)
 
         current_week_workouts = []
         for workout in workouts:
             workout_date = datetime.strptime(
-                workout.created_at, "%Y-%m-%d %H:%M:%S.%f")
+                workout.created_at, "%Y-%m-%d %H:%M:%S")
             if start_of_week <= workout_date <= end_of_week:
                 current_week_workouts.append(workout)
 
