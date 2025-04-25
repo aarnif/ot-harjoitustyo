@@ -6,11 +6,12 @@ from services.workout_service import workout_service, WorkOutDurationError
 
 
 class UpdateWorkoutView:
-    def __init__(self, root, workout_id, handle_show_workouts_view):
+    def __init__(self, root, workout_id, handle_show_workouts_view, handle_show_confirm_delete_view):
         self._root = root
         self._current_user = user_service.current_user()
         self._selected_workout = workout_service.get_workout_by_id(workout_id)
         self._handle_show_workouts_view = handle_show_workouts_view
+        self._handle_show_confirm_delete_view = handle_show_confirm_delete_view
         self._frame = None
         self._workout_type_entry = None
         self._workout_duration_entry = None
@@ -50,10 +51,7 @@ class UpdateWorkoutView:
         self._handle_show_workouts_view()
 
     def _handle_delete_workout(self):
-        if workout_service.delete_workout(self._selected_workout.id):
-            self._handle_show_workouts_view()
-        else:
-            self._show_error_message("Failed to delete workout.")
+        self._handle_show_confirm_delete_view(self._selected_workout.id)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
