@@ -24,3 +24,4 @@
 - Workouts-näkymän lisäys käyttöliittymään
 - CreateWorkout-näkymän lisäys käyttöliittymään
 - Yksittäisen treenin muokkaus käyttöliittymästä
+- Yksittäisen treenin poisto käyttöliittymästä
