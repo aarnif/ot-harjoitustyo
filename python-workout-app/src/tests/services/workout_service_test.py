@@ -137,6 +137,22 @@ class TestWorkoutService(unittest.TestCase):
         self.assertEqual(workout_by_id.type, "strength")
         self.assertEqual(workout_by_id.duration, 120)
 
+    def test_delete_workout(self):
+        user_service.create_user(self.user_matti.username,
+                                        self.user_matti.password,
+                                        self.user_matti.password)
+        new_workout = workout_service.create_workout(self.user_matti.username,
+                                                 self.workout.type,
+                                                 self.workout.duration)
+
+        workout_by_id = workout_service.get_workout_by_id(new_workout.id)
+
+        self.assertEqual(workout_by_id.username, self.user_matti.username)
+
+        workout_service.delete_workout(new_workout.id)
+        workout_by_id = workout_service.get_workout_by_id(new_workout.id)
+
+        self.assertEqual(workout_by_id, None)
 
     def test_get_weeks_workout_total(self):
         user_service.create_user(self.user_matti.username,

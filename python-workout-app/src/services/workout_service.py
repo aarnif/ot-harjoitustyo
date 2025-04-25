@@ -56,6 +56,9 @@ class WorkoutService:
            
         except ValueError:
             raise WorkOutDurationError("Please enter a valid number for workout duration.")
+        
+    def delete_workout(self, workout_id):
+        return self.workout_repository.delete(workout_id)
 
     def get_weeks_workout_total(self, username):
         workout_total = self.workout_repository.get_current_weeks_workout_total(
