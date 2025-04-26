@@ -5,6 +5,14 @@ from database_connection import get_database_connection
 
 
 def get_workout_from_row(row):
+    """Muodostaa Workout-olion tietokannan rivistä.
+
+    Args:
+        row (dict | None): Tietokannan rivi, joka sisältää treenitiedot. Voi olla None jos treeniä ei löydy.
+
+    Returns:
+        Workout | None: Workout-olio, joka vastaa tietokannan riviä, tai None jos riviä ei löydy.
+    """
     if row:
         return Workout(row["username"], row["type"], row["duration"], row["created_at"], row["id"])
 
@@ -12,15 +20,29 @@ def get_workout_from_row(row):
 
 
 class WorkoutRepository:
+    """Luokka, joka vastaa treeneihin liittyvistä tietokantatoiminnoista.
+    """
     def __init__(self, connection):
+        """Luokan konstruktori.
+
+        Args:
+            connection (sqlite3.Connection): Tietokantayhteys
+        """
         self._connection = connection
 
     def delete_all(self):
+        """Poistaa kaikki treenit tietokannasta.
+        """
         cursor = self._connection.cursor()
         cursor.execute("DELETE FROM workouts")
         self._connection.commit()
 
     def find_all_by_username(self, username):
+        """Hakee kaikki käyttäjän treenit tietokannasta.
+
+        Returns:
+            list[Workout]: Lista kaikista käyttäjän Workout-olioista
+        """
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -34,6 +56,14 @@ class WorkoutRepository:
         return workouts
 
     def find_one_by_id(self, workout_id):
+        """Hakee treenin tietokannasta treenin id:n perusteella.
+
+        Args:
+            workout_id (str): Treenin id
+
+        Returns:
+            Workout: Workout-olio, joka vastaa tietokannan riviä
+        """
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -47,6 +77,14 @@ class WorkoutRepository:
         return workout
 
     def create(self, workout):
+        """Luo uuden treenin tietokantaan.
+
+        Args:
+            user (Workout): Workout-olio, joka halutaan luoda
+
+        Returns:
+            Workout: Luotu Workout-olio
+        """
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -65,6 +103,14 @@ class WorkoutRepository:
 
     # generoitu koodi alkaa
     def update(self, workout):
+        """Päivittää olemassa olevan treenin tietokannassa.
+
+        Args:
+            workout (Workout): Workout-olio, joka halutaan päivittää
+
+        Returns:
+            Workout: Päivitetty Workout-olio
+        """
         cursor = self._connection.cursor()
         cursor.execute(
             "UPDATE workouts "
@@ -76,6 +122,14 @@ class WorkoutRepository:
         return workout
 
     def delete(self, workout_id):
+        """Poistaa yksittäisen treenin tietokannasta sen id:n perusteella.
+
+        Args:
+            workout_id (str): Treenin id
+
+        Returns:
+            bool: True, jos treeni poistettiin onnistuneesti, muuten False
+        """
         cursor = self._connection.cursor()
         cursor.execute(
             "DELETE FROM workouts WHERE id = ?",
@@ -85,6 +139,14 @@ class WorkoutRepository:
         return cursor.rowcount > 0
 
     def get_current_weeks_workout_total(self, username):
+        """Laskee käyttäjän treenien kokonaiskeston nykyiseltä viikolta.
+
+        Args:
+            username (str): Käyttäjätunnus
+
+        Returns:
+            int: Käyttäjän treenien kokonaiskesto nykyiseltä viikolta minuuteissa
+        """
         workouts = self.find_all_by_username(username)
 
         if len(workouts) == 0:
