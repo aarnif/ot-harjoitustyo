@@ -4,7 +4,16 @@ from services.user_service import user_service, UserNameLengthError, PasswordLen
 
 
 class CreateUserView:
+    """Näkymä, joka uuden käyttäjän luonnista.
+    """
     def __init__(self, root, handle_show_main_view, handle_show_login):
+        """Luokka konstruktori, joka luo kirjautumisnäkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            handle_show_main_view (callable): Käsittelijäfunktio, joka näyttää päänäkymän.
+            handle_show_login (callable): Käsittelijäfunktio, joka näyttää kirjautumisnäkymän.
+        """
         self._root = root
         self._handle_show_main_view = handle_show_main_view
         self._handle_show_login = handle_show_login
@@ -18,9 +27,11 @@ class CreateUserView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
-    def destroy(self):
+    def destroy(self):        
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_create_user(self):
