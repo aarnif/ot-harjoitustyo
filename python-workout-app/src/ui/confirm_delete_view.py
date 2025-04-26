@@ -5,7 +5,16 @@ from services.workout_service import workout_service
 
 
 class ConfirmDeleteView:
+    """Näkymä, joka vastaa yksittäisen treenin poistamisen vahvistamisesta sovelluksessa."""
     def __init__(self, root, workout_id, handle_show_update_workout, handle_show_workouts_view):
+        """Luokka konstruktori, joka luo näkymän treenin poistamisen vahvistamiselle.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            workout_id (int): Yksittäisen treenin id.
+            handle_show_update_workout (callable): Käsittelijäfunktio, joka peruuttaa treenin poistamisen ja siirtyy takaisin treenin muokkausnäkymään.
+            handle_show_workouts_view (callable): Käsittelijäfunktio, joka näyttää viikon treenien näkymän treenin poistamisen jälkeen.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._selected_workout = workout_service.get_workout_by_id(workout_id)
@@ -20,9 +29,11 @@ class ConfirmDeleteView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _show_error_message(self, message):
