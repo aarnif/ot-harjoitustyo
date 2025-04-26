@@ -9,12 +9,21 @@ from ui.confirm_delete_view import ConfirmDeleteView
 
 
 class UI:
+    """Luokka, joka vastaa sovelluksen käyttöliittymästä.
+    """
     def __init__(self, root):
+        """Luokka konstruktori, joka luo uuden käyttöliittymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-pääikkuna, joka toimii käyttöliittymän juurena.
+        """
         self._root = root
         self._current_view = None
         self._selected_workout_id = None
 
     def start(self):
+        """Käynnistää käyttöliittymän.
+        """
         self._show_login_view()
 
     def _hide_current_view(self):
