@@ -6,7 +6,16 @@ from services.workout_service import workout_service, WorkOutDurationError
 
 
 class UpdateWorkoutView:
+    """Näkymä, joka vastaa treenin muokkaamisesta ja sen poistamisesta sovelluksesta."""
     def __init__(self, root, workout_id, handle_show_workouts_view, handle_show_confirm_delete_view):
+        """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            workout_id (int): Yksittäisen treenin id.
+            handle_show_workouts_view (callable): Käsittelijäfunktio, joka näyttää viikon treenien näkymän.
+            handle_show_confirm_delete_view (callable): Käsittelijäfunktio, joka näyttää treenin poiston vahvistusnäkymän.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._selected_workout = workout_service.get_workout_by_id(workout_id)
@@ -21,9 +30,11 @@ class UpdateWorkoutView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_update_workout(self):
