@@ -34,11 +34,9 @@ class TestWorkoutService(unittest.TestCase):
         self.assertEqual(len(workouts), 1)
 
     def test_create_workout_duration_not_a_number(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -48,11 +46,9 @@ class TestWorkoutService(unittest.TestCase):
                          "Please enter a valid number for workout duration.")
 
     def test_create_workout_duration_negative_number(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -62,11 +58,9 @@ class TestWorkoutService(unittest.TestCase):
                          self.workout_duration_error.message)
 
     def test_create_workout_duration_too_big(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -86,11 +80,9 @@ class TestWorkoutService(unittest.TestCase):
         self.assertEqual(workout.username, user.username)
 
     def test_update_workout_duration_not_a_number(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
@@ -104,11 +96,9 @@ class TestWorkoutService(unittest.TestCase):
                          "Please enter a valid number for workout duration.")
 
     def test_update_workout_duration_negative_number(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
@@ -122,11 +112,9 @@ class TestWorkoutService(unittest.TestCase):
                          self.workout_duration_error.message)
 
     def test_update_workout_duration_too_big(self):
-        new_user = user_service.create_user(self.user_matti.username,
+        user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
-        user_service.login_user(new_user.username,
-                                new_user.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
