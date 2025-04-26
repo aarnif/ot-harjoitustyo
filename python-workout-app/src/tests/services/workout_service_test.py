@@ -85,6 +85,24 @@ class TestWorkoutService(unittest.TestCase):
         self.test_helpers.check_workout_equality(workout, self.workout)
         self.assertEqual(workout.username, user.username)
 
+    def test_update_workout_duration_not_a_number(self):
+        new_user = user_service.create_user(self.user_matti.username,
+                                            self.user_matti.password,
+                                            self.user_matti.password)
+        user_service.login_user(new_user.username,
+                                new_user.password)
+
+        new_workout = workout_service.create_workout(self.user_matti.username,
+                                                     self.workout.type,
+                                                     self.workout.duration)
+
+        new_workout.duration = "text"
+
+        with pytest.raises(WorkOutDurationError) as error:
+            workout_service.update_workout(new_workout)
+        self.assertEqual(str(error.value),
+                         "Please enter a valid number for workout duration.")
+
     def test_update_workout_duration_negative_number(self):
         new_user = user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
