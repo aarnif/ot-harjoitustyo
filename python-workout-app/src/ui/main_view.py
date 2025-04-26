@@ -5,7 +5,17 @@ from services.workout_service import workout_service
 
 
 class MainView:
+    """Päänäkymä, joka näyttää käyttäjälle hänen tietonsa ja treenitavoitteensa sekä mahdollistaa uloskirjautumisen.
+    """
     def __init__(self, root, handle_show_login, handle_show_update_workout_goal, handle_show_workouts):
+        """Luokka konstruktori, joka luo päänäkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            handle_show_login (callable): Käsittelijäfunktio, joka näyttää kirjautumisnäkymän.
+            handle_show_update_workout_goal (callable): Käsittelijäfunktio, joka näyttää treenitavoitteen päivitysnäkymän.
+            handle_show_workouts (callable): Käsittelijäfunktio, joka näyttää viikon treenien näkymän.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._workout_goal = self._current_user.weekly_training_goal_in_minutes
@@ -19,9 +29,11 @@ class MainView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_show_workouts_view(self):
