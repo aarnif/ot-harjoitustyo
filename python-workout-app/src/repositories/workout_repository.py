@@ -147,32 +147,34 @@ class WorkoutRepository:
         Returns:
             int: Käyttäjän treenien kokonaiskesto nykyiseltä viikolta minuuteissa
         """
-        workouts = self.find_all_by_username(username)
-
-        if len(workouts) == 0:
-            return 0
-
+        cursor = self._connection.cursor()
+        
         today = datetime.now()
-
+        
         start_of_week = today - timedelta(days=today.weekday())
         start_of_week = datetime(
             start_of_week.year, start_of_week.month, start_of_week.day)
-
+        start_of_week_str = start_of_week.strftime("%Y-%m-%d %H:%M:%S")
+        
         end_of_week = start_of_week + timedelta(days=6)
         end_of_week = datetime(
-            end_of_week.year, end_of_week.month, end_of_week.day, 23, 59)
-
-        current_week_workouts = []
-        for workout in workouts:
-            workout_date = datetime.strptime(
-                workout.created_at, "%Y-%m-%d %H:%M:%S")
-            if start_of_week <= workout_date <= end_of_week:
-                current_week_workouts.append(workout)
-
-        total_workout_time = sum(
-            workout.duration for workout in current_week_workouts)
-
-        return total_workout_time
+            end_of_week.year, end_of_week.month, end_of_week.day, 23, 59, 59)
+        end_of_week_str = end_of_week.strftime("%Y-%m-%d %H:%M:%S")
+        
+        cursor.execute(
+            """
+            SELECT SUM(duration) as workout_total 
+            FROM workouts 
+            WHERE username = ? 
+            AND created_at BETWEEN ? AND ?
+            """,
+            (username, start_of_week_str, end_of_week_str)
+        )
+        
+        result = cursor.fetchone()
+        if result["workout_total"]:
+            return int(result["workout_total"])
+        return 0
     # generoitu koodi päättyy
 
 
