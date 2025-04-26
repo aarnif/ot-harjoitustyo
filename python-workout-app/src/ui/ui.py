@@ -7,6 +7,7 @@ from ui.create_workout_view import CreateWorkoutView
 from ui.update_workout_view import UpdateWorkoutView
 from ui.confirm_delete_view import ConfirmDeleteView
 
+
 class UI:
     def __init__(self, root):
         self._root = root
@@ -137,4 +138,3 @@ class UI:
         )
 
         self._current_view.pack()
-

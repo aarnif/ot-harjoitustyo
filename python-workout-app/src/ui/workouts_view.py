@@ -37,10 +37,10 @@ class WorkoutsView:
 
         title_label = ttk.Label(
             master=self._frame, text="Workouts", font=("", 11, "bold"))
-        
+
         add_workout_button = ttk.Button(
             master=self._frame, text="Add Workout", command=self._handle_add_workout)
-        
+
         back_button = ttk.Button(
             master=self._frame, text="Go Back", command=self._handle_go_back_to_main_view)
 
@@ -55,7 +55,8 @@ class WorkoutsView:
         if not self._all_workouts:
             no_workouts_label = ttk.Label(
                 master=self._frame, text="No workouts found", font=("", 10))
-            no_workouts_label.grid(row=1, column=0, columnspan=3, padx=10, pady=5)
+            no_workouts_label.grid(
+                row=1, column=0, columnspan=3, padx=10, pady=5)
         else:
             header_type = ttk.Label(
                 master=self._frame, text="Type", font=("", 10, "bold"))
@@ -72,15 +73,20 @@ class WorkoutsView:
                 label_type = ttk.Label(master=self._frame, text=workout.type)
                 label_duration = ttk.Label(
                     self._frame, text=f"{workout.duration} minutes")
-                label_date = ttk.Label(master=self._frame, text=workout.created_at)
+                label_date = ttk.Label(
+                    master=self._frame, text=workout.created_at)
 
                 update_button = ttk.Button(
                     master=self._frame, text="Update", command=lambda wid=workout.id: self._handle_update_workout(wid))
 
-                label_type.grid(row=idx, column=0, padx=10, pady=2, sticky=constants.E)
-                label_duration.grid(row=idx, column=1, padx=10, pady=2, sticky=constants.E)
-                label_date.grid(row=idx, column=2, padx=10, pady=2, sticky=constants.E)
-                update_button.grid(row=idx, column=3, padx=10, pady=2, sticky=(constants.E, constants.W))
+                label_type.grid(row=idx, column=0, padx=10,
+                                pady=2, sticky=constants.E)
+                label_duration.grid(row=idx, column=1, padx=10,
+                                    pady=2, sticky=constants.E)
+                label_date.grid(row=idx, column=2, padx=10,
+                                pady=2, sticky=constants.E)
+                update_button.grid(row=idx, column=3, padx=10,
+                                   pady=2, sticky=(constants.E, constants.W))
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=100)
         self._frame.grid_columnconfigure(1, weight=1, minsize=100)

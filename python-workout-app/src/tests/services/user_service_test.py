@@ -112,31 +112,31 @@ class TestUserService(unittest.TestCase):
                                             self.user_matti.password,
                                             self.user_matti.password)
         user_service.login_user(new_user.username,
-                                                 new_user.password)
+                                new_user.password)
 
         with pytest.raises(WorkoutGoalError) as error:
             user_service.update_workout_goal("text")
         self.assertEqual(str(error.value),
                          "Please enter a valid number for workout goal.")
-        
+
     def test_update_workout_goal_negative_number(self):
         new_user = user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
         user_service.login_user(new_user.username,
-                                                 new_user.password)
+                                new_user.password)
 
         with pytest.raises(WorkoutGoalError) as error:
             user_service.update_workout_goal(-1)
         self.assertEqual(str(error.value),
                          self.workout_goal_error.message)
-        
+
     def test_update_workout_goal_too_big(self):
         new_user = user_service.create_user(self.user_matti.username,
                                             self.user_matti.password,
                                             self.user_matti.password)
         user_service.login_user(new_user.username,
-                                                 new_user.password)
+                                new_user.password)
 
         with pytest.raises(WorkoutGoalError) as error:
             user_service.update_workout_goal(10081)

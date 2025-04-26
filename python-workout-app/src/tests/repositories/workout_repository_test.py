@@ -47,7 +47,7 @@ class TestUserRepository(unittest.TestCase):
         workout = workout_repository.create(self.workout)
         workout = workout_repository.find_one_by_id(
             workout.id)
-        
+
         self.test_helpers.check_workout_equality(workout, self.workout)
 
     def test_get_weeks_workout_total(self):
