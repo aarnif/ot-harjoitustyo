@@ -28,7 +28,7 @@ class CreateWorkoutView:
         workout_duration = self._workout_duration_entry.get()
         try:
             workout_service.create_workout(self._current_user.username,
-                workout_type, workout_duration)
+                                           workout_type, workout_duration)
             self._handle_show_workouts_view()
         except WorkOutDurationError as error:
             self._show_error_message(error.message)
@@ -87,7 +87,7 @@ class CreateWorkoutView:
         new_workout_type_label.grid(row=1, column=0, padx=(10, 0), pady=5)
         new_workout_type_entry.grid(row=1, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
-        
+
         new_workout_duration_label.grid(row=2, column=0, padx=(10, 0), pady=5)
         new_workout_duration_entry.grid(row=2, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)

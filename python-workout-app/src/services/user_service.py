@@ -87,9 +87,9 @@ class UserService:
                 self._current_user.username, new_goal)
             self._current_user = updated_user
 
-        except ValueError:
+        except ValueError as exc:
             raise WorkoutGoalError(
-                "Please enter a valid number for workout goal.")
+                "Please enter a valid number for workout goal.") from exc
         # generoitu koodi päättyy
 
     def login_user(self, username, password):

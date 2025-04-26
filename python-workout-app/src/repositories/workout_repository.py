@@ -33,12 +33,12 @@ class WorkoutRepository:
 
         return workouts
 
-    def find_one_by_id(self, id):
+    def find_one_by_id(self, workout_id):
         cursor = self._connection.cursor()
 
         cursor.execute(
             "SELECT id, username, type, duration, created_at FROM workouts WHERE id = ?",
-            (id,))
+            (workout_id,))
 
         row = cursor.fetchone()
 
@@ -62,7 +62,7 @@ class WorkoutRepository:
         # generoitu koodi päättyy
 
         return workout
-    
+
     # generoitu koodi alkaa
     def update(self, workout):
         cursor = self._connection.cursor()
@@ -74,7 +74,7 @@ class WorkoutRepository:
         )
         self._connection.commit()
         return workout
-    
+
     def delete(self, workout_id):
         cursor = self._connection.cursor()
         cursor.execute(
@@ -83,7 +83,7 @@ class WorkoutRepository:
         )
         self._connection.commit()
         return cursor.rowcount > 0
-    
+
     def get_current_weeks_workout_total(self, username):
         workouts = self.find_all_by_username(username)
 

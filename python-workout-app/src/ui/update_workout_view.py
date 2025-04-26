@@ -82,7 +82,8 @@ class UpdateWorkoutView:
         new_workout_duration_label = ttk.Label(
             master=self._frame, text="Workout Duration")
         new_workout_duration_entry = ttk.Entry(master=self._frame)
-        new_workout_duration_entry.insert(0, str(self._selected_workout.duration))
+        new_workout_duration_entry.insert(
+            0, str(self._selected_workout.duration))
 
         self._workout_duration_entry = new_workout_duration_entry
 
@@ -102,7 +103,7 @@ class UpdateWorkoutView:
         new_workout_type_label.grid(row=1, column=0, padx=(10, 0), pady=5)
         new_workout_type_entry.grid(row=1, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
-        
+
         new_workout_duration_label.grid(row=2, column=0, padx=(10, 0), pady=5)
         new_workout_duration_entry.grid(row=2, column=1, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)

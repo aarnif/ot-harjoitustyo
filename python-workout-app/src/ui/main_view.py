@@ -66,7 +66,7 @@ class MainView:
 
         header_label = ttk.Label(
             master=self._frame, text=f"Hi, {self._current_user.username}!", font=("", 11, "bold"))
-        
+
         workouts_button = ttk.Button(
             master=self._frame, text="Workouts", command=self._handle_show_workouts_view)
 
@@ -75,7 +75,7 @@ class MainView:
 
         header_label.grid(columnspan=2, sticky=constants.W,
                           padx=(10, 0), pady=5)
-        
+
         workouts_button.grid(row=0, column=2, sticky=(
             constants.E, constants.W), padx=(5, 10), pady=5)
 
