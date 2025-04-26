@@ -4,7 +4,14 @@ from services.user_service import user_service, WorkoutGoalError
 
 
 class UpdateWorkoutGoalView:
+    """Näkymä, joka vastaa treenin tavoitteen päivittämisestä sovelluksessa."""
     def __init__(self, root, handle_show_main_view):
+        """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            handle_show_main_view (callable): Käsittelijäfunktio, joka näyttää päänäkymän.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._workout_goal = self._current_user.weekly_training_goal_in_minutes
@@ -17,9 +24,11 @@ class UpdateWorkoutGoalView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_update_goal(self):
