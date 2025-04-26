@@ -25,3 +25,4 @@
 - CreateWorkout-näkymän lisäys käyttöliittymään
 - Yksittäisen treenin muokkaus käyttöliittymästä
 - Yksittäisen treenin poisto käyttöliittymästä
+- Koodin docstring-dokumentoinnin aloitus
