@@ -70,6 +70,3 @@ class UserRepository:
 
 
 user_repository = UserRepository(get_database_connection())
-
-if __name__ == "__main__":
-    user_repository.create(User("test", "password", 600))
