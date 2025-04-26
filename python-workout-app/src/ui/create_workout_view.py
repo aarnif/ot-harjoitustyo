@@ -5,7 +5,14 @@ from services.workout_service import workout_service, WorkOutDurationError
 
 
 class CreateWorkoutView:
+    """Näkymä, joka vastaa uuden treenin luonnista sovelluksessa."""
     def __init__(self, root, handle_show_workouts_view):
+        """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            handle_show_workouts_view (callable): Käsittelijäfunktio, joka näyttää viikon treenien näkymän.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._handle_show_workouts_view = handle_show_workouts_view
@@ -18,9 +25,11 @@ class CreateWorkoutView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_create_workout(self):
