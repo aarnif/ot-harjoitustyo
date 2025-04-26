@@ -5,7 +5,16 @@ from services.workout_service import workout_service
 
 
 class WorkoutsView:
+    """Näkymä, joka vastaa käyttäjän viikon treenien näyttämisestä sovelluksessa."""
     def __init__(self, root, handle_show_main_view, handle_show_create_workout, handle_show_update_workout):
+        """Luokka konstruktori, joka luo viikon treenien näkymän.
+
+        Args:
+            root (tkinter.Tk): Tkinter-elementti, joka toimii näkymän juurena.
+            handle_show_main_view (callable): Käsittelijäfunktio, joka näyttää päänäkymän.
+            handle_show_create_workout (callable): Käsittelijäfunktio, joka näyttää uuden treenin luontinäkymän.
+            handle_show_update_workout (callable): Käsittelijäfunktio, joka näyttää treenin muokkausnäkymän.
+        """
         self._root = root
         self._current_user = user_service.current_user()
         self._all_workouts = workout_service.get_all_user_workouts(
@@ -18,9 +27,11 @@ class WorkoutsView:
         self._initialize()
 
     def pack(self):
+        """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 
     def _handle_add_workout(self):
