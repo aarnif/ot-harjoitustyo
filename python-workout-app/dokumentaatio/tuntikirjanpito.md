@@ -18,4 +18,5 @@
 | 23.4  | 3    | Uuden treenin muokkaus käyttöliittymästä                   |
 | 25.4  | 2    | Uuden treenin poisto käyttöliittymästä                     |
 | 26.4  | 3    | Koodin refaktorointi ja dokumentointi                      |
-|  yht  | 32   |                                                            |
+| 27.4  | 2    | Käyttöohjeen kirjoitus                                     |
+|  yht  | 34   |                                                            |
