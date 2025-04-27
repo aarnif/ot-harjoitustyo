@@ -26,3 +26,4 @@
 - Yksittäisen treenin muokkaus käyttöliittymästä
 - Yksittäisen treenin poisto käyttöliittymästä
 - Koodin docstring-dokumentoinnin aloitus
+- Sovelluksen käyttöohjeen kirjoitus
