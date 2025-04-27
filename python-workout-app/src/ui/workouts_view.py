@@ -6,6 +6,7 @@ from services.workout_service import workout_service
 
 class WorkoutsView:
     """Näkymä, joka vastaa käyttäjän viikon treenien näyttämisestä sovelluksessa."""
+
     def __init__(self, root, handle_show_main_view, handle_show_create_workout, handle_show_update_workout):
         """Luokka konstruktori, joka luo viikon treenien näkymän.
 

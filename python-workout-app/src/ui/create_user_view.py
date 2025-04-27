@@ -6,6 +6,7 @@ from services.user_service import user_service, UserNameLengthError, PasswordLen
 class CreateUserView:
     """Näkymä, joka uuden käyttäjän luonnista.
     """
+
     def __init__(self, root, handle_show_main_view, handle_show_login):
         """Luokka konstruktori, joka luo kirjautumisnäkymän.
 
@@ -30,7 +31,7 @@ class CreateUserView:
         """Näyttää näkymän käyttöliittymässä."""
         self._frame.pack(fill=constants.X)
 
-    def destroy(self):        
+    def destroy(self):
         """Poistaa näkymän käyttöliittymästä."""
         self._frame.destroy()
 

@@ -11,6 +11,7 @@ from ui.confirm_delete_view import ConfirmDeleteView
 class UI:
     """Luokka, joka vastaa sovelluksen käyttöliittymästä.
     """
+
     def __init__(self, root):
         """Luokka konstruktori, joka luo uuden käyttöliittymän.
 

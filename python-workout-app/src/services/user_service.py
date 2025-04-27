@@ -10,8 +10,10 @@ class UserNameLengthError(Exception):
     """Poikkeus, joka heitetään, jos käyttäjätunnus on liian lyhyt.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "Username must be at least 3 characters long."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "Username must be at least 3 characters long."
     """
+
     def __init__(self, message="Username must be at least 3 characters long."):
         self.message = message
         super().__init__(self.message)
@@ -21,8 +23,10 @@ class PasswordLengthError(Exception):
     """Poikkeus, joka heitetään, jos salasana on liian lyhyt.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "Password must be at least 6 characters long."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "Password must be at least 6 characters long."
     """
+
     def __init__(self, message="Password must be at least 6 characters long."):
         self.message = message
         super().__init__(self.message)
@@ -34,6 +38,7 @@ class PasswordMatchError(Exception):
     Args:
         message (str, optional): Virheilmoituksen viesti. Oletusarvo "Passwords do not match."
     """
+
     def __init__(self, message="Passwords do not match."):
         self.message = message
         super().__init__(self.message)
@@ -43,8 +48,10 @@ class UserNameExistsError(Exception):
     """Poikkeus, joka heitetään, jos käyttäjätunnus on jo olemassa.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "User with the same username already exists."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "User with the same username already exists."
     """
+
     def __init__(self, message="User with the same username already exists."):
         self.message = message
         super().__init__(self.message)
@@ -54,8 +61,10 @@ class InvalidCredentialsError(Exception):
     """Poikkeus, joka heitetään, jos kirjautumistiedot ovat virheelliset.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "Invalid username or password. Please try again."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "Invalid username or password. Please try again."
     """
+
     def __init__(self, message="Invalid username or password. Please try again."):
         self.message = message
         super().__init__(self.message)
@@ -65,8 +74,10 @@ class WorkoutGoalError(Exception):
     """Poikkeus, joka heitetään, jos treenitavoite on virheellinen.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "Workout goal must be number between 0 and 10080."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "Workout goal must be number between 0 and 10080."
     """
+
     def __init__(self, message="Workout goal must be number between 0 and 10080."):
         self.message = message
         super().__init__(self.message)
@@ -76,11 +87,13 @@ class WorkoutGoalError(Exception):
 class UserService:
     """Käyttäjiin liittyvästä sovelluslogiikasta vastaava luokka.
     """
+
     def __init__(self, user_repository=default_user_repository):
         """Luokan konstruktori, joka luo uuden sovelluslogiikasta vastaavan palvelun.
 
         Args:
-            user_repository (UserRepository, optional): Olio, joka omaa UserRepository-luokkaa vastaavat metodit. Oletusarvo UserRepository-olio.
+            user_repository (UserRepository, optional): Olio, joka omaa UserRepository-luokkaa 
+            vastaavat metodit. Oletusarvo UserRepository-olio.
         """
         self._current_user = None
         self.user_repository = user_repository
@@ -182,7 +195,8 @@ class UserService:
         """Palauttaa kirjautuneen käyttäjän.
 
         Returns:
-            User | None: Kirjautunut käyttäjä joka on User-olio. Palauttaa None, jos käyttäjä ei ole kirjautunut sisään.
+            User | None: Kirjautunut käyttäjä joka on User-olio. 
+            Palauttaa None, jos käyttäjä ei ole kirjautunut sisään.
         """
         return self._current_user
 

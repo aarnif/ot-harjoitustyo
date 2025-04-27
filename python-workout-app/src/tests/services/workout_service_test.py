@@ -35,8 +35,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_create_workout_duration_not_a_number(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -47,8 +47,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_create_workout_duration_negative_number(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -59,8 +59,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_create_workout_duration_too_big(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         with pytest.raises(WorkOutDurationError) as error:
             workout_service.create_workout(self.user_matti.username,
@@ -81,8 +81,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_update_workout_duration_not_a_number(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
@@ -97,8 +97,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_update_workout_duration_negative_number(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
@@ -113,8 +113,8 @@ class TestWorkoutService(unittest.TestCase):
 
     def test_update_workout_duration_too_big(self):
         user_service.create_user(self.user_matti.username,
-                                            self.user_matti.password,
-                                            self.user_matti.password)
+                                 self.user_matti.password,
+                                 self.user_matti.password)
 
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,

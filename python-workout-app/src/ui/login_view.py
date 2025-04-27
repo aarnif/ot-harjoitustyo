@@ -5,6 +5,7 @@ from services.user_service import user_service, InvalidCredentialsError
 
 class LoginView:
     """Näkymä, joka vastaa käyttäjän kirjautumisesta sovellukseen."""
+
     def __init__(self, root, handle_show_main_view, handle_show_create_user):
         """Luokka konstruktori, joka luo kirjautumisnäkymän.
 

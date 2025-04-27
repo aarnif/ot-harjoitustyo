@@ -6,6 +6,7 @@ from services.workout_service import workout_service
 
 class ConfirmDeleteView:
     """Näkymä, joka vastaa yksittäisen treenin poistamisen vahvistamisesta sovelluksessa."""
+
     def __init__(self, root, workout_id, handle_show_update_workout, handle_show_workouts_view):
         """Luokka konstruktori, joka luo näkymän treenin poistamisen vahvistamiselle.
 

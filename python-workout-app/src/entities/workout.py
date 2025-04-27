@@ -8,6 +8,7 @@ class Workout:
         duration (int): Treenin kesto minuutteina
         created_at (datetime): Treenin luontiaika
     """
+
     def __init__(self, username, workout_type, workout_duration, created_at, workout_id=None):
         """Luokan konstruktori, joka luo uuden treenin.
 
@@ -16,7 +17,8 @@ class Workout:
             workout_type (str): Treenin tyyppi
             workout_duration (str): Treenin kesto minuutteina
             created_at (str): Treenin luontiaika
-            workout_id (int, optional): Treenin id. Oletusarvo None, ennen kuin treeni tallennetaan tietokantaan.
+            workout_id (int, optional): Treenin id. Oletusarvo None, 
+            ennen kuin treeni tallennetaan tietokantaan.
         """
         self.id = workout_id
         self.username = username

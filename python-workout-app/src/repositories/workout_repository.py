@@ -8,10 +8,12 @@ def get_workout_from_row(row):
     """Muodostaa Workout-olion tietokannan rivistä.
 
     Args:
-        row (dict | None): Tietokannan rivi, joka sisältää treenitiedot. Voi olla None jos treeniä ei löydy.
+        row (dict | None): Tietokannan rivi, joka sisältää treenitiedot. 
+        Voi olla None jos treeniä ei löydy.
 
     Returns:
-        Workout | None: Workout-olio, joka vastaa tietokannan riviä, tai None jos riviä ei löydy.
+        Workout | None: Workout-olio, joka vastaa tietokannan riviä, 
+        tai None jos riviä ei löydy.
     """
     if row:
         return Workout(row["username"], row["type"], row["duration"], row["created_at"], row["id"])
@@ -22,6 +24,7 @@ def get_workout_from_row(row):
 class WorkoutRepository:
     """Luokka, joka vastaa treeneihin liittyvistä tietokantatoiminnoista.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 
@@ -148,19 +151,19 @@ class WorkoutRepository:
             int: Käyttäjän treenien kokonaiskesto nykyiseltä viikolta minuuteissa
         """
         cursor = self._connection.cursor()
-        
+
         today = datetime.now()
-        
+
         start_of_week = today - timedelta(days=today.weekday())
         start_of_week = datetime(
             start_of_week.year, start_of_week.month, start_of_week.day)
         start_of_week_str = start_of_week.strftime("%Y-%m-%d %H:%M:%S")
-        
+
         end_of_week = start_of_week + timedelta(days=6)
         end_of_week = datetime(
             end_of_week.year, end_of_week.month, end_of_week.day, 23, 59, 59)
         end_of_week_str = end_of_week.strftime("%Y-%m-%d %H:%M:%S")
-        
+
         cursor.execute(
             """
             SELECT SUM(duration) as workout_total 
@@ -170,7 +173,7 @@ class WorkoutRepository:
             """,
             (username, start_of_week_str, end_of_week_str)
         )
-        
+
         result = cursor.fetchone()
         if result["workout_total"]:
             return int(result["workout_total"])

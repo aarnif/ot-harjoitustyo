@@ -7,6 +7,7 @@ from services.workout_service import workout_service, WorkOutDurationError
 
 class UpdateWorkoutView:
     """Näkymä, joka vastaa treenin muokkaamisesta ja sen poistamisesta sovelluksesta."""
+
     def __init__(self, root, workout_id, handle_show_workouts_view, handle_show_confirm_delete_view):
         """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
 

@@ -10,8 +10,10 @@ class WorkOutDurationError(Exception):
     """Poikkeus, joka heitetään, jos treenin keston arvo on virheellinen.
 
     Args:
-        message (str, optional): Virheilmoituksen viesti. Oletusarvo "Workout duration must be number between 1 and 10080."
+        message (str, optional): Virheilmoituksen viesti. 
+        Oletusarvo "Workout duration must be number between 1 and 10080."
     """
+
     def __init__(self, message="Workout duration must be number between 1 and 10080."):
         self.message = message
         super().__init__(self.message)
@@ -20,11 +22,13 @@ class WorkOutDurationError(Exception):
 class WorkoutService:
     """Treeneihin liittyvästä sovelluslogiikasta vastaava luokka.
     """
+
     def __init__(self, workout_repository=default_workout_repository):
         """Luokan konstruktori, joka luo uuden sovelluslogiikasta vastaavan palvelun.
 
         Args:
-            workout_repository (WorkoutRepository, optional): Olio, joka omaa WorkoutRepository-luokkaa vastaavat metodit. Oletusarvo WorkoutRepository-olio.
+            workout_repository (WorkoutRepository, optional): Olio, joka omaa 
+            WorkoutRepository-luokkaa vastaavat metodit. Oletusarvo WorkoutRepository-olio.
         """
         self.workout_repository = workout_repository
 

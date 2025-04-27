@@ -5,6 +5,7 @@ from services.user_service import user_service, WorkoutGoalError
 
 class UpdateWorkoutGoalView:
     """Näkymä, joka vastaa treenin tavoitteen päivittämisestä sovelluksessa."""
+
     def __init__(self, root, handle_show_main_view):
         """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
 

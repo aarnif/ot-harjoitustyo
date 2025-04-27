@@ -6,7 +6,8 @@ def get_user_from_row(row):
     """Muodostaa User-olion tietokannan rivistä.
 
     Args:
-        row (dict | None): Tietokannan rivi, joka sisältää käyttäjätiedot. Voi olla None jos käyttäjää ei löydy.
+        row (dict | None): Tietokannan rivi, joka sisältää käyttäjätiedot. 
+        Voi olla None jos käyttäjää ei löydy.
 
     Returns:
         User | None: User-olio, joka vastaa tietokannan riviä, tai None jos riviä ei löydy.
@@ -20,6 +21,7 @@ def get_user_from_row(row):
 class UserRepository:
     """Luokka, joka vastaa käyttäjiin liittyvistä tietokantatoiminnoista.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 

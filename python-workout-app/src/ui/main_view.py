@@ -7,6 +7,7 @@ from services.workout_service import workout_service
 class MainView:
     """Päänäkymä, joka näyttää käyttäjälle hänen tietonsa ja treenitavoitteensa sekä mahdollistaa uloskirjautumisen.
     """
+
     def __init__(self, root, handle_show_login, handle_show_update_workout_goal, handle_show_workouts):
         """Luokka konstruktori, joka luo päänäkymän.
 

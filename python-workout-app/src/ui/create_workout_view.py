@@ -6,6 +6,7 @@ from services.workout_service import workout_service, WorkOutDurationError
 
 class CreateWorkoutView:
     """Näkymä, joka vastaa uuden treenin luonnista sovelluksessa."""
+
     def __init__(self, root, handle_show_workouts_view):
         """Luokka konstruktori, joka luo uuden treenin luontinäkymän.
 
