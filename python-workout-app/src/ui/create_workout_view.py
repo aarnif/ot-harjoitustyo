@@ -53,7 +53,7 @@ class CreateWorkoutView:
         self._frame = ttk.Frame(master=self._root)
 
         header_label = ttk.Label(
-            master=self._frame, text="Workouts", font=("", 12, "bold"))
+            master=self._frame, text="New Workout", font=("", 12, "bold"))
 
         self._error_message = StringVar(self._frame)
 
