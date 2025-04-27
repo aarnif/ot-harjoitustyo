@@ -14,6 +14,7 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 
 ## Dokumentaatio
 
+- [Käyttöohje](./python-workout-app/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./python-workout-app/dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./python-workout-app/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./python-workout-app/dokumentaatio/changelog.md)
