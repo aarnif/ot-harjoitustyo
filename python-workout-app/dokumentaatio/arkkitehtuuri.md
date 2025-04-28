@@ -1,8 +1,40 @@
-## Sovelluksen tämän hetkinen pakkauskaavio:
+# Arkkitehtuurikuvaus
+
+## Rakenne
+
+Sovelluksen rakenne koostuu kolmesta eri kerroksesta, joilla jokaisella on oma vastuunsa. Näistä ui-pakkaus vastaa käyttöliittymästä, services-pakkaus sovelluslogiikasta ja repositories-pakkaus tiedon pysyväistallentamisesta tietokantaan.
+
+## Käyttöliittymä
+
+Sovelluksen käyttöliittymä sisältää seuraavat näkymät:
+
+- Kirjautuminen
+- Käyttäjän luonti
+- Päänäkymä
+- Treenitavoitteen muokkaus
+- Viikon treenihistoria
+- Treenin luonti
+- Treenin muokkaus
+- Treenin poiston vahvistus
+
+Käyttöliittymän on eristetty muusta sovelluslogiikasta ja sen tehtävänä on kutsua UserService- ja WorkoutService-luokkien metodeja riippuen käyttäjän toiminnasta sovelluksessa.
+
+## Sovelluslogiikka
+
+Alla olevassa pakkauskaavioissa on kuvattu sovelluksen eri osien suhteet toisiinsa.
 
 ![Pakkauskaavio](kuvat/pakkauskaavio.png)
 
-## Sekvenssikaaviot
+Sovelluslogiikan kannalta olennaisimmat luokat ovat UserService ja WorkoutService.
+
+## Tietojen pysyväistallennus
+
+Pakkauksen repositories luokkien UserRepository ja WorkoutRepository tehtävinä on vastata tietojen tallentamisesta.
+Tietojen tallentaminen tapahtuu kummassakin tapauksessa hyödyntämällä SQLite-tietokantaa. Käyttäjätiedot tallennetaan tietokanta tauluun `users` ja treenitiedot tauluun `workouts`.
+
+## Päätoiminnallisuudet
+
+Alla on esitelty sovelluksen päätoiminnallisuuksia sekvenssikaavioiden avulla.
 
 ### Käyttäjän luonti
 
@@ -21,5 +53,41 @@ sequenceDiagram
   UserService->>UserRepository: create(test)
   UserRepository-->>UserService: user
   UserService-->>UI: user
+  UI->>UI: _show_main_view()
+```
+
+### Käyttäjän kirjautuminen
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant UI
+  participant UserService
+  participant UserRepository
+  participant test
+  User->>UI: click "Login" button
+  UI->>UserService: login_user("test", "password")
+  UserService->>UserRepository: find_by_username("test")
+  UserRepository-->>UserService: user
+  UserService-->>UI: user
+  UI->>UI: _show_main_view()
+```
+
+### Uuden treenin luonti
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant UI
+  participant WorkoutService
+  participant WorkoutRepository
+  participant workout
+  User->>UI: click "Add Workout" button
+  UI->>WorkoutService: create_workout("test", "cardio", 60)
+  WorkoutRepository-->>WorkoutService: None
+  WorkoutService->>workout: Workout("test", "cardio", 60)
+  WorkoutService->>WorkoutRepository: create(workout)
+  WorkoutRepository-->>WorkoutService: workout
+  WorkoutService-->>UI: workout
   UI->>UI: _show_main_view()
 ```
