@@ -84,7 +84,6 @@ sequenceDiagram
   participant workout
   User->>UI: click "Add Workout" button
   UI->>WorkoutService: create_workout("test", "cardio", 60)
-  WorkoutRepository-->>WorkoutService: None
   WorkoutService->>workout: Workout("test", "cardio", 60)
   WorkoutService->>WorkoutRepository: create(workout)
   WorkoutRepository-->>WorkoutService: workout
