@@ -14,7 +14,7 @@ class TestUserRepository(unittest.TestCase):
         workout_repository.delete_all()
         user_repository.delete_all()
         self.user_matti = User("matti", "password", 600)
-        self.workout = Workout("matti", "cardio", 60, datetime.now())
+        self.workout = Workout("matti", "Cardio", 60, datetime.now())
         user_repository.create(self.user_matti)
 
     def test_create_workout(self):

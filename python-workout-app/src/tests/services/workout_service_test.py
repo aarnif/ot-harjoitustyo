@@ -18,7 +18,7 @@ class TestWorkoutService(unittest.TestCase):
         workout_repository.delete_all()
         user_repository.delete_all()
         self.user_matti = User("matti", "password")
-        self.workout = Workout("matti", "cardio", 60, datetime.now())
+        self.workout = Workout("matti", "Cardio", 60, datetime.now())
         self.workout_duration_error = WorkOutDurationError()
 
     def test_get_all_workouts(self):
@@ -134,13 +134,13 @@ class TestWorkoutService(unittest.TestCase):
         new_workout = workout_service.create_workout(self.user_matti.username,
                                                      self.workout.type,
                                                      self.workout.duration)
-        new_workout.type = "strength"
+        new_workout.type = "Strength"
         new_workout.duration = 120
 
         workout_service.update_workout(new_workout)
         workout_by_id = workout_service.get_workout_by_id(new_workout.id)
 
-        self.assertEqual(workout_by_id.type, "strength")
+        self.assertEqual(workout_by_id.type, "Strength")
         self.assertEqual(workout_by_id.duration, 120)
 
     def test_delete_workout(self):
