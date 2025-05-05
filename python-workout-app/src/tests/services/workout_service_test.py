@@ -91,7 +91,8 @@ class TestWorkoutService(unittest.TestCase):
         new_workout.duration = "text"
 
         with pytest.raises(WorkOutDurationError) as error:
-            workout_service.update_workout(new_workout)
+            workout_service.update_workout(self.user_matti.username, self.workout.type,
+                                           new_workout.duration, new_workout.created_at, new_workout.id)
         self.assertEqual(str(error.value),
                          "Please enter a valid number for workout duration.")
 
@@ -107,7 +108,8 @@ class TestWorkoutService(unittest.TestCase):
         new_workout.duration = -1
 
         with pytest.raises(WorkOutDurationError) as error:
-            workout_service.update_workout(new_workout)
+            workout_service.update_workout(self.user_matti.username, self.workout.type,
+                                           new_workout.duration, new_workout.created_at, new_workout.id)
         self.assertEqual(str(error.value),
                          self.workout_duration_error.message)
 
@@ -123,7 +125,8 @@ class TestWorkoutService(unittest.TestCase):
         new_workout.duration = 10081
 
         with pytest.raises(WorkOutDurationError) as error:
-            workout_service.update_workout(new_workout)
+            workout_service.update_workout(self.user_matti.username, self.workout.type,
+                                           new_workout.duration, new_workout.created_at, new_workout.id)
         self.assertEqual(str(error.value),
                          self.workout_duration_error.message)
 
@@ -137,7 +140,8 @@ class TestWorkoutService(unittest.TestCase):
         new_workout.type = "Strength"
         new_workout.duration = 120
 
-        workout_service.update_workout(new_workout)
+        workout_service.update_workout(self.user_matti.username, new_workout.type,
+                                       new_workout.duration, new_workout.created_at, new_workout.id)
         workout_by_id = workout_service.get_workout_by_id(new_workout.id)
 
         self.assertEqual(workout_by_id.type, "Strength")

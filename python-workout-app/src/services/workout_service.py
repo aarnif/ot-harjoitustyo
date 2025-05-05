@@ -105,11 +105,16 @@ class WorkoutService:
             raise WorkOutDurationError(
                 "Please enter a valid number for workout duration.") from exc
 
-    def update_workout(self, workout):
+    def update_workout(self, username, workout_type, workout_duration,
+                       workout_created_at, workout_id):
         """Päivittää olemassa olevan treenin.
 
         Args:
-            workout (Workout): Treeni joka halutaan päivittää Workout-oliona
+            username (str): Käyttäjätunnus
+            workout_type (str): Treenin tyyppi
+            workout_duration (int): Treenin kesto minuutteina
+            workout_created_at (str): Treenin luontiaika
+            workout_id (str): Treenin id
 
         Raises:
             WorkOutDurationError: Treenin kesto ei ole luku
@@ -118,10 +123,10 @@ class WorkoutService:
             Workout: Päivitetty treeni joka on Workout-olio
         """
         try:
-            validated_duration = self._validate_duration(workout.duration)
-            workout.duration = validated_duration
+            validated_duration = self._validate_duration(workout_duration)
 
-            updated_workout = self.workout_repository.update(workout)
+            updated_workout = self.workout_repository.update(Workout(
+                username, workout_type, validated_duration, workout_created_at, workout_id))
             return updated_workout
 
         except ValueError as exc:
