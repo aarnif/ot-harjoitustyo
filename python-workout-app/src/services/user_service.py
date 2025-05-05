@@ -96,7 +96,7 @@ class UserService:
             vastaavat metodit. Oletusarvo UserRepository-olio.
         """
         self._current_user = None
-        self.user_repository = user_repository
+        self._user_repository = user_repository
 
     def create_user(self, username, password, confirm_password):
         """Luo uuden käyttäjän.
@@ -125,13 +125,13 @@ class UserService:
         if password != confirm_password:
             raise PasswordMatchError()
 
-        check_if_user_already_exist = self.user_repository.find_by_username(
+        check_if_user_already_exist = self._user_repository.find_by_username(
             username)
 
         if check_if_user_already_exist:
             raise UserNameExistsError()
 
-        user = self.user_repository.create(User(username, password))
+        user = self._user_repository.create(User(username, password))
 
         self._current_user = user
 
@@ -159,7 +159,7 @@ class UserService:
             if new_goal > 10080:
                 raise WorkoutGoalError()
 
-            updated_user = self.user_repository.update_weekly_training_goal(
+            updated_user = self._user_repository.update_weekly_training_goal(
                 self._current_user.username, new_goal)
             self._current_user = updated_user
 
@@ -181,7 +181,7 @@ class UserService:
         Returns:
             User: Kirjautunut käyttäjä joka on User-olio
         """
-        existing_user = self.user_repository.find_by_username(
+        existing_user = self._user_repository.find_by_username(
             username)
 
         if not existing_user or existing_user.password != password:
