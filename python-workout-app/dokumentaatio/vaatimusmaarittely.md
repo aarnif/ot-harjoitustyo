@@ -2,12 +2,11 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen avulla käyttäjä voi pitää kirjaa omista treeneistään ja asettaa treeni-tavoitteita sekä seurata edistymistään.
+Sovelluksen avulla käyttäjä voi pitää kirjaa omista treeneistään ja asettaa viikottaisen treenitavoitteen sekä seurata sen edistymistä.
 
 ## Käyttäjät
 
 Sovelluksessa on vain yhdenlaisia käyttäjiä, jotka ovat rekisteröityneitä käyttäjiä.
-Myöhemmin mahdollisesti ylläpitäjä-roolin käyttäjä.
 
 ## Sovelluksen tarjoama toiminnallisuus
 
