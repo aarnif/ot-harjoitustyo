@@ -30,7 +30,7 @@ class WorkoutService:
             workout_repository (WorkoutRepository, optional): Olio, joka omaa 
             WorkoutRepository-luokkaa vastaavat metodit. Oletusarvo WorkoutRepository-olio.
         """
-        self.workout_repository = workout_repository
+        self._workout_repository = workout_repository
 
     def _validate_duration(self, duration):
         """Validoi treenin keston arvon.
@@ -65,7 +65,7 @@ class WorkoutService:
         Returns:
             list[Workout]: Lista käyttäjän treeneistä Workout-olioina
         """
-        workouts = self.workout_repository.find_all_by_username(username)
+        workouts = self._workout_repository.find_all_by_username(username)
         return workouts
 
     def get_workout_by_id(self, workout_id):
@@ -77,7 +77,7 @@ class WorkoutService:
         Returns:
             Workout: Workout-olio, joka vastaa annettua treenin id:tä
         """
-        workout = self.workout_repository.find_one_by_id(workout_id)
+        workout = self._workout_repository.find_one_by_id(workout_id)
         return workout
 
     def create_workout(self, username, workout_type, workout_duration):
@@ -97,7 +97,7 @@ class WorkoutService:
         try:
             workout_duration = self._validate_duration(workout_duration)
 
-            created_workout = self.workout_repository.create(
+            created_workout = self._workout_repository.create(
                 Workout(username, workout_type, workout_duration, datetime.now()))
             return created_workout
 
@@ -105,11 +105,16 @@ class WorkoutService:
             raise WorkOutDurationError(
                 "Please enter a valid number for workout duration.") from exc
 
-    def update_workout(self, workout):
+    def update_workout(self, username, workout_type, workout_duration,
+                       workout_created_at, workout_id):
         """Päivittää olemassa olevan treenin.
 
         Args:
-            workout (Workout): Treeni joka halutaan päivittää Workout-oliona
+            username (str): Käyttäjätunnus
+            workout_type (str): Treenin tyyppi
+            workout_duration (int): Treenin kesto minuutteina
+            workout_created_at (str): Treenin luontiaika
+            workout_id (str): Treenin id
 
         Raises:
             WorkOutDurationError: Treenin kesto ei ole luku
@@ -118,10 +123,10 @@ class WorkoutService:
             Workout: Päivitetty treeni joka on Workout-olio
         """
         try:
-            validated_duration = self._validate_duration(workout.duration)
-            workout.duration = validated_duration
+            validated_duration = self._validate_duration(workout_duration)
 
-            updated_workout = self.workout_repository.update(workout)
+            updated_workout = self._workout_repository.update(Workout(
+                username, workout_type, validated_duration, workout_created_at, workout_id))
             return updated_workout
 
         except ValueError as exc:
@@ -137,7 +142,7 @@ class WorkoutService:
         Returns:
             Bool: True, jos treeni poistettiin onnistuneesti, muuten False
         """
-        return self.workout_repository.delete(workout_id)
+        return self._workout_repository.delete(workout_id)
 
     def get_weeks_workout_total(self, username):
         """Laskee käyttäjän treenien kokonaiskeston nykyiseltä viikolta.
@@ -148,7 +153,7 @@ class WorkoutService:
         Returns:
             int: Käyttäjän treenien kokonaiskesto nykyiseltä viikolta minuutteina
         """
-        workout_total = self.workout_repository.get_current_weeks_workout_total(
+        workout_total = self._workout_repository.get_current_weeks_workout_total(
             username)
         return workout_total
 

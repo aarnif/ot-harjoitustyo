@@ -12,12 +12,15 @@
 | 12.4  | 1    | workouts-taulukon lisäys tietokantaan                      |
 | 12.4  | 2    | Workout-repositorin lisäys ja sen testaus                  |
 | 14.4  | 2    | Workout-servicen lisäys ja sen testaus                     |
-| 15.4  | 2    | Treenitavoitteen näyttö ja päivittäminen käyttöliittymästä |
-| 21.4  | 2    | Treenihistorian lisäys käyttöliittymään                    |
-| 22.4  | 1    | Uuden treenin lisäys käyttöliittymään                      |
-| 23.4  | 3    | Uuden treenin muokkaus käyttöliittymästä                   |
-| 25.4  | 2    | Uuden treenin poisto käyttöliittymästä                     |
-| 26.4  | 3    | Koodin refaktorointi ja dokumentointi                      |
-| 27.4  | 2    | Käyttöohjeen kirjoitus                                     |
-| 28.4  | 2    | Arkkitehtuurikuvauksen päivitys                            |
-|  yht  | 36   |                                                            |
+| 15.4  | 2    | treenitavoitteen näyttö ja päivittäminen käyttöliittymästä |
+| 21.4  | 2    | treenihistorian lisäys käyttöliittymään                    |
+| 22.4  | 1    | uuden treenin lisäys käyttöliittymään                      |
+| 23.4  | 3    | uuden treenin muokkaus käyttöliittymästä                   |
+| 25.4  | 2    | uuden treenin poisto käyttöliittymästä                     |
+| 26.4  | 3    | koodin refaktorointi ja dokumentointi                      |
+| 27.4  | 2    | käyttöohjeen kirjoitus                                     |
+| 28.4  | 2    | arkkitehtuurikuvauksen päivitys                            |
+|  5.5  | 1    | koodin refaktorointi                                       |
+|  5.5  | 1    | testausdokumentin kirjoitus                                |
+|  7.5  | 1    | arkkitehtuuridokumentin viimeistely                        |
+|  yht  | 39   |                                                            |

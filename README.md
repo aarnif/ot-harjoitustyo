@@ -11,6 +11,7 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 ## Release-linkki
 
 [Viikko 5](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko5)
+[Viikko 6](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Dokumentaatio
 
@@ -19,6 +20,7 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 - [Työaikakirjanpito](./python-workout-app/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](./python-workout-app/dokumentaatio/changelog.md)
 - [Arkkitehtuurikuvaus](./python-workout-app/dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](./python-workout-app/dokumentaatio/testaus.md)
 
 ## Asennus
 

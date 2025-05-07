@@ -43,13 +43,11 @@ class UpdateWorkoutView:
         workout_duration = self._workout_duration_entry.get()
         try:
             workout_service.update_workout(
-                Workout(
-                    self._current_user.username,
-                    workout_type,
-                    workout_duration,
-                    self._selected_workout.created_at,
-                    self._selected_workout.id
-                )
+                self._current_user.username,
+                workout_type,
+                workout_duration,
+                self._selected_workout.created_at,
+                self._selected_workout.id
             )
             self._handle_show_workouts_view()
         except WorkOutDurationError as error:
