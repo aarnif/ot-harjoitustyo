@@ -28,3 +28,9 @@
 - Koodin docstring-dokumentoinnin aloitus
 - Sovelluksen käyttöohjeen kirjoitus
 - Sovelluksen arkkitehtuurikuvauksen päivitys
+
+## Viikko 7
+
+- Sovelluksen koodin viimeistely
+- Testausdokumentin kirjoitus
+- Arkkitehtuuridokumentin viimeistely
