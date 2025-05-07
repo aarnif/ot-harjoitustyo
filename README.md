@@ -2,7 +2,7 @@
 
 ## Treeni-sovellus
 
-Harjoitustyön aiheena on **treeni-sovellus**, mihin käyttäjä voi asettaa _treenitavoitteita_, _kirjata treeninsä_ ja _seurata edistymistään_.
+Harjoitustyön aiheena on **treenisovellus**, mihin käyttäjä voi asettaa _treenitavoitteita_, _kirjata treeninsä_ ja _seurata edistymistään_.
 
 ## Python versio
 
@@ -11,6 +11,7 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 ## Release-linkki
 
 [Viikko 5](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko5)
+
 [Viikko 6](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Dokumentaatio
