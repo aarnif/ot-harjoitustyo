@@ -17,7 +17,7 @@ Sovelluksen käyttöliittymä sisältää seuraavat näkymät:
 - Treenin muokkaus
 - Treenin poiston vahvistus
 
-Käyttöliittymän on eristetty muusta sovelluslogiikasta ja sen tehtävänä on kutsua UserService- ja WorkoutService-luokkien metodeja riippuen käyttäjän toiminnasta sovelluksessa.
+Käyttöliittymä on eristetty muusta sovelluslogiikasta ja sen tehtävänä on kutsua UserService- ja WorkoutService-luokkien metodeja riippuen käyttäjän toiminnasta sovelluksessa.
 
 ## Sovelluslogiikka
 
@@ -25,7 +25,25 @@ Alla olevassa pakkauskaavioissa on kuvattu sovelluksen eri osien suhteet toisiin
 
 ![Pakkauskaavio](kuvat/pakkauskaavio.png)
 
-Sovelluslogiikan kannalta olennaisimmat luokat ovat UserService ja WorkoutService.
+Sovelluslogiikan kannalta olennaisimmat luokat ovat UserService ja WorkoutService, jotka vastaavat sovelluksen toiminnallisuuksista.
+Sovelluksen looginen tietomalli muodostuu User- ja Workout-luokista, jotka kuvaavat käyttäjiä ja niiden treenejä. Käyttäjä voi lisätä useita treenejä, mutta jokainen treeni kuuluu vain yhdelle käyttäjälle.
+
+```mermaid
+ classDiagram
+      User "1" --> "*" Workout
+      class Workout{
+          id
+          username
+          type
+          duration
+          created_at
+      }
+      class User{
+          username
+          password
+          weekly_training_goal_in_minutes
+      }
+```
 
 ## Tietojen pysyväistallennus
 
@@ -90,3 +108,7 @@ sequenceDiagram
   WorkoutService-->>UI: workout
   UI->>UI: _show_main_view()
 ```
+
+### Muut toiminnallisuudet
+
+Sovelluksen muut toiminnallisuudet, kuten treenitavoitteen asetus sekä treenin muokkaus ja poisto, toimivat samalla tavalla. Käyttöliittymä kutsuu sovelluslogiikan metodeja, jotka puolestaan tekevät operaatioita tietokantaan ja palauttavat näiden operaatioiden tulokset käyttöliittymään, joka tarvittaessa päivittää näkymän käyttäjälle.
