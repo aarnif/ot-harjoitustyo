@@ -23,4 +23,5 @@
 |  5.5  | 1    | koodin refaktorointi                                       |
 |  5.5  | 1    | testausdokumentin kirjoitus                                |
 |  7.5  | 1    | arkkitehtuuridokumentin viimeistely                        |
-|  yht  | 39   |                                                            |
+|  8.5  | 1    | koodin refaktorointi                                       |
+|  yht  | 40   |                                                            |
