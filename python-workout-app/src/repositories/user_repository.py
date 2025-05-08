@@ -30,11 +30,17 @@ class UserRepository:
         """
         self._connection = connection
 
+    # generoitu koodi alkaa
+    def _execute_query(self, query, params=None):
+        cursor = self._connection.cursor()
+        cursor.execute(query, params or ())
+        return cursor
+    # generoitu koodi päätty
+
     def delete_all(self):
         """Poistaa kaikki käyttäjät tietokannasta.
         """
-        cursor = self._connection.cursor()
-        cursor.execute("DELETE FROM users")
+        self._execute_query("DELETE FROM users")
         self._connection.commit()
 
     def find_all(self):
@@ -43,13 +49,10 @@ class UserRepository:
         Returns:
             list[User]: Lista kaikista User-olioista
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute(
+        cursor = self._execute_query(
             "SELECT username, password, weekly_training_goal_in_minutes FROM users")
 
         rows = cursor.fetchall()
-
         users = [get_user_from_row(row) for row in rows]
 
         return users
@@ -63,17 +66,13 @@ class UserRepository:
         Returns:
             User: User-olio, joka vastaa annettua käyttäjätunnusta
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute("SELECT username, password, "
-                       "weekly_training_goal_in_minutes FROM users WHERE username = ?",
-                       (username,))
+        cursor = self._execute_query(
+            "SELECT username, password, \
+            weekly_training_goal_in_minutes FROM users WHERE username = ?",
+            (username,))
 
         row = cursor.fetchone()
-
-        user = get_user_from_row(row)
-
-        return user
+        return get_user_from_row(row)
 
     def create(self, user):
         """Luo uuden käyttäjän tietokantaan.
@@ -84,16 +83,13 @@ class UserRepository:
         Returns:
             User: Luotu User-olio
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute(
-            "INSERT INTO users (username, password, weekly_training_goal_in_minutes) "
-            "VALUES (?, ?, ?)",
+        self._execute_query(
+            "INSERT INTO users (username, password, \
+            weekly_training_goal_in_minutes) VALUES (?, ?, ?)",
             (user.username, user.password, user.weekly_training_goal_in_minutes)
         )
 
         self._connection.commit()
-
         return user
 
     def update_weekly_training_goal(self, username, new_weekly_training_goal):
@@ -106,13 +102,12 @@ class UserRepository:
         Returns:
             User: Päivitetty User-olio
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute("UPDATE users SET weekly_training_goal_in_minutes = ? WHERE username = ?",
-                       (new_weekly_training_goal, username))
+        self._execute_query(
+            "UPDATE users SET weekly_training_goal_in_minutes = ? WHERE username = ?",
+            (new_weekly_training_goal, username)
+        )
 
         self._connection.commit()
-
         updated_user = self.find_by_username(username)
 
         return updated_user
