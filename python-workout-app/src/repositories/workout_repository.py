@@ -33,27 +33,33 @@ class WorkoutRepository:
         """
         self._connection = connection
 
+    # generoitu koodi alkaa
+    def _execute_query(self, query, params=None):
+        cursor = self._connection.cursor()
+        cursor.execute(query, params or ())
+        return cursor
+    # generoitu koodi päättyy
+
     def delete_all(self):
         """Poistaa kaikki treenit tietokannasta.
         """
-        cursor = self._connection.cursor()
-        cursor.execute("DELETE FROM workouts")
+        self._execute_query("DELETE FROM workouts")
         self._connection.commit()
 
     def find_all_by_username(self, username):
         """Hakee kaikki käyttäjän treenit tietokannasta.
 
+        Args:
+            username (str): Käyttäjätunnus
+
         Returns:
             list[Workout]: Lista kaikista käyttäjän Workout-olioista
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute(
+        cursor = self._execute_query(
             "SELECT id, username, type, duration, created_at FROM workouts WHERE username = ?",
             (username,))
 
         rows = cursor.fetchall()
-
         workouts = [get_workout_from_row(row) for row in rows]
 
         return workouts
@@ -67,44 +73,31 @@ class WorkoutRepository:
         Returns:
             Workout: Workout-olio, joka vastaa tietokannan riviä
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute(
+        cursor = self._execute_query(
             "SELECT id, username, type, duration, created_at FROM workouts WHERE id = ?",
             (workout_id,))
 
         row = cursor.fetchone()
-
-        workout = get_workout_from_row(row)
-
-        return workout
+        return get_workout_from_row(row)
 
     def create(self, workout):
         """Luo uuden treenin tietokantaan.
 
         Args:
-            user (Workout): Workout-olio, joka halutaan luoda
+            workout (Workout): Workout-olio, joka halutaan luoda
 
         Returns:
             Workout: Luotu Workout-olio
         """
-        cursor = self._connection.cursor()
-
-        cursor.execute(
-            "INSERT INTO workouts (username, type, duration, created_at) "
-            "VALUES (?, ?, ?, ?)",
+        cursor = self._execute_query(
+            "INSERT INTO workouts (username, type, duration, created_at) VALUES (?, ?, ?, ?)",
             (workout.username, workout.type, workout.duration, workout.created_at)
         )
 
         self._connection.commit()
-
-        # generoitu koodi alkaa
         workout.id = cursor.lastrowid
-        # generoitu koodi päättyy
-
         return workout
 
-    # generoitu koodi alkaa
     def update(self, workout):
         """Päivittää olemassa olevan treenin tietokannassa.
 
@@ -114,11 +107,8 @@ class WorkoutRepository:
         Returns:
             Workout: Päivitetty Workout-olio
         """
-        cursor = self._connection.cursor()
-        cursor.execute(
-            "UPDATE workouts "
-            "SET type = ?, duration = ? "
-            "WHERE id = ? AND username = ?",
+        self._execute_query(
+            "UPDATE workouts SET type = ?, duration = ? WHERE id = ? AND username = ?",
             (workout.type, workout.duration, workout.id, workout.username)
         )
         self._connection.commit()
@@ -133,8 +123,7 @@ class WorkoutRepository:
         Returns:
             bool: True, jos treeni poistettiin onnistuneesti, muuten False
         """
-        cursor = self._connection.cursor()
-        cursor.execute(
+        cursor = self._execute_query(
             "DELETE FROM workouts WHERE id = ?",
             (workout_id,)
         )
@@ -150,8 +139,6 @@ class WorkoutRepository:
         Returns:
             int: Käyttäjän treenien kokonaiskesto nykyiseltä viikolta minuuteissa
         """
-        cursor = self._connection.cursor()
-
         today = datetime.now()
 
         start_of_week = today - timedelta(days=today.weekday())
@@ -164,7 +151,7 @@ class WorkoutRepository:
             end_of_week.year, end_of_week.month, end_of_week.day, 23, 59, 59)
         end_of_week_str = end_of_week.strftime("%Y-%m-%d %H:%M:%S")
 
-        cursor.execute(
+        cursor = self._execute_query(
             """
             SELECT SUM(duration) as workout_total 
             FROM workouts 
@@ -178,7 +165,6 @@ class WorkoutRepository:
         if result["workout_total"]:
             return int(result["workout_total"])
         return 0
-    # generoitu koodi päättyy
 
 
 workout_repository = WorkoutRepository(get_database_connection())
