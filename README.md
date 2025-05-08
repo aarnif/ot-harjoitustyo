@@ -14,6 +14,8 @@ Sovellus vaatii vähintään Python-versio 3.10. Se ei välttämättä toimi sit
 
 [Viikko 6](https://github.com/aarnif/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/aarnif/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Dokumentaatio
 
 - [Käyttöohje](./python-workout-app/dokumentaatio/kayttoohje.md)
